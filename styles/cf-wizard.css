@@ -226,31 +226,41 @@
   font-size: 0.9em;
 }
 
-/* --- Imported content badge (used by future steps when source !== "SRD") --- */
-.cf-imported-badge {
+/* --- Imported content badge (used by future steps when source !== "SRD")
+   Scoped under .cf-wizard so its specificity beats the .cf-race-card *
+   reset rule and the badge keeps its styling inside reset cards.       */
+.cf-wizard .cf-imported-badge {
   display: inline-block;
   padding: 1px 6px;
   margin-left: 6px;
   font-size: 0.7em;
+  line-height: 1.4;
   text-transform: uppercase;
   background: var(--cf-imported-badge);
   color: #000;
   border-radius: 3px;
 }
 
-/* --- Race step: card grid + preview --- */
+/* --- Race step: card grid + preview ---
+   IMPORTANT: Foundry applies aggressive defaults to <button> (min-height,
+   line-height, padding) that break flex/grid sizing. We reset with
+   `all: unset` and re-declare every property we care about. Same trick
+   used by lore-forge's .lf-card.                                       */
 .cf-race-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 8px;
 }
 
-.cf-race-card {
+.cf-wizard .cf-race-card {
+  all: unset;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 4px;
   padding: 10px 12px;
+  min-width: 0;
   background: color-mix(in srgb, currentColor 6%, transparent);
   border: 2px solid color-mix(in srgb, currentColor 15%, transparent);
   border-radius: 6px;
@@ -259,43 +269,58 @@
   transition: transform 0.1s, border-color 0.15s, background 0.15s;
 }
 
-.cf-race-card:hover {
+.cf-wizard .cf-race-card:hover {
   border-color: color-mix(in srgb, var(--cf-accent) 60%, transparent);
   background: color-mix(in srgb, var(--cf-accent) 12%, transparent);
   transform: translateY(-1px);
 }
 
-.cf-race-card.selected {
+.cf-wizard .cf-race-card.selected {
   border-color: var(--cf-accent);
   background: color-mix(in srgb, var(--cf-accent) 22%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--cf-accent) 35%, transparent);
 }
 
-.cf-race-card-header {
+/* Reset ALL descendants of the card too — Foundry's button-descendant
+   rules can re-apply unwanted line-height/display/font-size to spans
+   nested inside <button>. We then explicitly re-style each piece.    */
+.cf-wizard .cf-race-card *,
+.cf-wizard .cf-race-card *::before,
+.cf-wizard .cf-race-card *::after {
+  all: unset;
+  box-sizing: border-box;
+}
+
+.cf-wizard .cf-race-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 6px;
 }
 
-.cf-race-card-name {
+.cf-wizard .cf-race-card-name {
   font-weight: bold;
   font-size: 1em;
+  line-height: 1.2;
 }
 
-.cf-race-card-asi {
+.cf-wizard .cf-race-card-asi {
   font-size: 0.85em;
+  line-height: 1.3;
   opacity: 0.85;
 }
 
-.cf-race-card-meta {
+.cf-wizard .cf-race-card-meta {
   font-size: 0.75em;
+  line-height: 1.3;
   opacity: 0.65;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.cf-race-card-subbadge {
+.cf-wizard .cf-race-card-subbadge {
+  display: inline-block;
   font-size: 0.85em;
   font-style: italic;
   opacity: 0.85;
@@ -303,7 +328,7 @@
   color: var(--cf-accent-light);
 }
 
-.cf-race-card-sub {
+.cf-wizard .cf-race-card-sub {
   background: color-mix(in srgb, var(--cf-accent) 5%, transparent);
 }
 
