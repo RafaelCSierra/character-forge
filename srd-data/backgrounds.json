@@ -1,0 +1,26 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "backgrounds": [
+    {
+      "key": "soldier",
+      "name": "Soldier",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.Soldier",
+      "skillProficiencies": ["ath", "itm"],
+      "toolProficiencies": ["gaming-set:any", "vehicles-land"],
+      "languages": [],
+      "equipment": [
+        { "key": "insignia-of-rank", "qty": 1 },
+        { "key": "trophy", "qty": 1 },
+        { "key": "deck-of-cards", "qty": 1 },
+        { "key": "common-clothes", "qty": 1 }
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Military Rank",
+        "desc": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank."
+      },
+      "source": "SRD-5.1"
+    }
+  ]
+}

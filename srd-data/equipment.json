@@ -1,0 +1,22 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "equipment": [
+    { "key": "chain-mail", "name": "Chain Mail", "type": "armor", "armorType": "heavy", "ac": 16, "stealthDisadvantage": true, "strRequirement": 13, "weight": 55, "cost": { "gp": 75 } },
+    { "key": "leather-armor", "name": "Leather Armor", "type": "armor", "armorType": "light", "ac": 11, "weight": 10, "cost": { "gp": 10 } },
+    { "key": "shield", "name": "Shield", "type": "armor", "armorType": "shield", "ac": 2, "weight": 6, "cost": { "gp": 10 } },
+    { "key": "longsword", "name": "Longsword", "type": "weapon", "weaponType": "martial", "damage": "1d8 slashing", "versatile": "1d10", "weight": 3, "cost": { "gp": 15 } },
+    { "key": "shortsword", "name": "Shortsword", "type": "weapon", "weaponType": "martial", "damage": "1d6 piercing", "finesse": true, "light": true, "weight": 2, "cost": { "gp": 10 } },
+    { "key": "longbow", "name": "Longbow", "type": "weapon", "weaponType": "martial", "damage": "1d8 piercing", "range": "150/600", "twoHanded": true, "weight": 2, "cost": { "gp": 50 } },
+    { "key": "light-crossbow", "name": "Light Crossbow", "type": "weapon", "weaponType": "simple", "damage": "1d8 piercing", "range": "80/320", "loading": true, "twoHanded": true, "weight": 5, "cost": { "gp": 25 } },
+    { "key": "handaxe", "name": "Handaxe", "type": "weapon", "weaponType": "simple", "damage": "1d6 slashing", "thrown": "20/60", "light": true, "weight": 2, "cost": { "gp": 5 } },
+    { "key": "arrow", "name": "Arrow", "type": "ammo", "weight": 0.05, "cost": { "gp": 0.05 } },
+    { "key": "crossbow-bolt", "name": "Crossbow Bolt", "type": "ammo", "weight": 0.075, "cost": { "gp": 0.05 } },
+    { "key": "dungeoneers-pack", "name": "Dungeoneer's Pack", "type": "pack", "contents": ["backpack", "crowbar", "hammer", "piton x10", "torch x10", "tinderbox", "rations x10", "waterskin", "hempen-rope-50"], "cost": { "gp": 12 } },
+    { "key": "explorers-pack", "name": "Explorer's Pack", "type": "pack", "contents": ["backpack", "bedroll", "mess-kit", "tinderbox", "torch x10", "rations x10", "waterskin", "hempen-rope-50"], "cost": { "gp": 10 } },
+    { "key": "insignia-of-rank", "name": "Insignia of Rank", "type": "gear", "weight": 0, "cost": { "gp": 0 } },
+    { "key": "trophy", "name": "Trophy from a Fallen Enemy", "type": "gear", "weight": 0, "cost": { "gp": 0 } },
+    { "key": "deck-of-cards", "name": "Deck of Cards", "type": "gear", "weight": 0, "cost": { "gp": 0.5 } },
+    { "key": "common-clothes", "name": "Common Clothes", "type": "gear", "weight": 3, "cost": { "gp": 0.5 } }
+  ]
+}

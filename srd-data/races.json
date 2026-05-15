@@ -1,0 +1,27 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "races": [
+    {
+      "key": "human",
+      "name": "Human",
+      "i18nKey": "CHARACTER_FORGE.SRD.Race.Human",
+      "size": "medium",
+      "speed": 30,
+      "asi": [{ "str": 1, "dex": 1, "con": 1, "int": 1, "wis": 1, "cha": 1 }],
+      "languages": ["common", "any:1"],
+      "traits": [
+        {
+          "name": "Ability Score Increase",
+          "desc": "Your ability scores each increase by 1."
+        },
+        {
+          "name": "Languages",
+          "desc": "You can speak, read, and write Common and one extra language of your choice."
+        }
+      ],
+      "subraces": [],
+      "source": "SRD-5.1"
+    }
+  ]
+}

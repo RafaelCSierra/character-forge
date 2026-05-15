@@ -1,0 +1,109 @@
+{
+  "CHARACTER_FORGE": {
+    "Button": "Forjar Personagem",
+    "ButtonHint": "Abrir o assistente de criação de personagem do Character Forge.",
+    "Wizard": {
+      "Title": "Character Forge"
+    },
+    "Nav": {
+      "Back": "Voltar",
+      "Next": "Avançar",
+      "Reset": "Reiniciar",
+      "Forge": "Forjar Personagem",
+      "Forging": "Forjando..."
+    },
+    "Step": {
+      "Identity": "Identidade",
+      "Race": "Raça & Herança",
+      "Class": "Classe & Vocação",
+      "Background": "Antecedente",
+      "Abilities": "Atributos",
+      "Skills": "Perícias",
+      "Spells": "Magias",
+      "Equipment": "Equipamento",
+      "Review": "Revisar & Forjar"
+    },
+    "Identity": {
+      "Desc": "Vamos começar com o básico de quem é o seu personagem.",
+      "Name": "Nome",
+      "NameLabel": "Nome do personagem",
+      "NamePlaceholder": "ex.: Lirien Lâmina-do-Sol",
+      "NameHint": "O nome do seu personagem. Pode ser alterado depois na ficha.",
+      "Alignment": "Tendência",
+      "AlignmentLabel": "Tendência moral e ética (opcional)",
+      "AlignmentNone": "— Não escolhido —",
+      "AlignmentHint": "A tendência descreve a relação do seu personagem com lei e caos, bem e mal. Pode pular se preferir decidir durante o jogo.",
+      "Portrait": "Retrato",
+      "PortraitLabel": "Caminho da imagem do retrato (opcional)",
+      "PortraitPlaceholder": "icons/svg/mystery-man.svg",
+      "PortraitHint": "Caminho para um arquivo de imagem dentro do seu Foundry. Pode definir ou alterar depois na ficha."
+    },
+    "Alignment": {
+      "LawfulGood":     "Leal e Bom",
+      "NeutralGood":    "Neutro e Bom",
+      "ChaoticGood":    "Caótico e Bom",
+      "LawfulNeutral":  "Leal e Neutro",
+      "TrueNeutral":    "Neutro",
+      "ChaoticNeutral": "Caótico e Neutro",
+      "LawfulEvil":     "Leal e Mau",
+      "NeutralEvil":    "Neutro e Mau",
+      "ChaoticEvil":    "Caótico e Mau"
+    },
+    "Abilities": {
+      "Method": {
+        "PointBuy": "Compra por pontos (27 pontos)",
+        "StandardArray": "Conjunto padrão (15, 14, 13, 12, 10, 8)",
+        "Roll": "Rolagem 4d6, descartar menor"
+      }
+    },
+    "DraftSaved": "Rascunho salvo",
+    "ResetConfirmTitle": "Reiniciar assistente?",
+    "ResetConfirmContent": "Isto vai descartar tudo que você preencheu até agora. Tem certeza?",
+    "Settings": {
+      "DefaultAbilityMethod": "Método padrão de atributos",
+      "DefaultAbilityMethodHint": "Qual método deve aparecer pré-selecionado na etapa de Atributos.",
+      "AllowMulticlass": "Permitir multiclasse",
+      "AllowMulticlassHint": "Habilitar a opção de multiclasse no assistente de Subir de Nível.",
+      "AllowFeatAtLevel1": "Permitir talento no nível 1 (regra opcional)",
+      "AllowFeatAtLevel1Hint": "Conforme a regra opcional do Livro do Jogador, personagens recebem um talento na criação.",
+      "ImportedOverridesSrd": "Conteúdo importado sobrepõe o SRD",
+      "ImportedOverridesSrdHint": "Quando uma entrada importada tem a mesma chave de uma do SRD, dar preferência para a importada.",
+      "AutoTickXp": "Conceder XP automaticamente após subir de nível",
+      "AutoTickXpHint": "Adiciona XP ao personagem automaticamente quando o assistente de Subir de Nível termina."
+    },
+    "Notify": {
+      "NoName": "Por favor, insira um nome para o personagem antes de continuar.",
+      "DraftPending": "Character Forge: há um rascunho salvo. Abra o assistente para retomar.",
+      "ForgeNotReady": "Character Forge: o pipeline de criação ainda está sendo montado. Mais etapas em breve.",
+      "WrongSystem": "Character Forge requer o sistema D&D 5e.",
+      "OldSystem": "Character Forge requer D&D 5e {required}+. Versão detectada: {current}. Algumas funcionalidades podem não funcionar.",
+      "SrdLoadError": "Character Forge: falha ao carregar o conteúdo SRD embarcado. O assistente não vai funcionar até isso ser corrigido."
+    },
+    "SRD": {
+      "Race": {
+        "Human": {
+          "name": "Humano",
+          "desc": "Humanos são o povo mais adaptável e ambicioso entre as raças comuns."
+        }
+      },
+      "Class": {
+        "Fighter": {
+          "name": "Guerreiro",
+          "desc": "Mestre do combate marcial, hábil com uma variedade de armas e armaduras."
+        }
+      },
+      "Subclass": {
+        "Champion": {
+          "name": "Campeão",
+          "desc": "Focado na perfeição física do corpo e na maestria com armas."
+        }
+      },
+      "Background": {
+        "Soldier": {
+          "name": "Soldado",
+          "desc": "A guerra foi sua vida por todo o tempo que você consegue lembrar."
+        }
+      }
+    }
+  }
+}

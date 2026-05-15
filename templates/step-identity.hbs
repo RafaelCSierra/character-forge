@@ -1,0 +1,48 @@
+<section class="cf-step" data-step="identity">
+  <h2>{{localize "CHARACTER_FORGE.Step.Identity"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Identity.Desc"}}</p>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Identity.Name"}}</legend>
+    <label class="cf-field">
+      <span class="cf-field-label">{{localize "CHARACTER_FORGE.Identity.NameLabel"}}</span>
+      <input type="text"
+             name="name"
+             value="{{name}}"
+             placeholder="{{localize 'CHARACTER_FORGE.Identity.NamePlaceholder'}}"
+             autocomplete="off"
+             required>
+    </label>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Identity.NameHint"}}</p>
+  </fieldset>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Identity.Alignment"}}</legend>
+    <label class="cf-field">
+      <span class="cf-field-label">{{localize "CHARACTER_FORGE.Identity.AlignmentLabel"}}</span>
+      <select name="alignment">
+        <option value="" {{#unless alignment}}selected{{/unless}}>
+          {{localize "CHARACTER_FORGE.Identity.AlignmentNone"}}
+        </option>
+        {{#each alignments}}
+        <option value="{{this.key}}" {{#if (eq ../alignment this.key)}}selected{{/if}}>
+          {{localize this.labelKey}}
+        </option>
+        {{/each}}
+      </select>
+    </label>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Identity.AlignmentHint"}}</p>
+  </fieldset>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Identity.Portrait"}}</legend>
+    <label class="cf-field">
+      <span class="cf-field-label">{{localize "CHARACTER_FORGE.Identity.PortraitLabel"}}</span>
+      <input type="text"
+             name="portrait"
+             value="{{portrait}}"
+             placeholder="{{localize 'CHARACTER_FORGE.Identity.PortraitPlaceholder'}}">
+    </label>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Identity.PortraitHint"}}</p>
+  </fieldset>
+</section>

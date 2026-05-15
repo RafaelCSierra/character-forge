@@ -1,0 +1,24 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "skills": [
+    { "key": "acr", "name": "Acrobatics", "ability": "dex" },
+    { "key": "ani", "name": "Animal Handling", "ability": "wis" },
+    { "key": "arc", "name": "Arcana", "ability": "int" },
+    { "key": "ath", "name": "Athletics", "ability": "str" },
+    { "key": "dec", "name": "Deception", "ability": "cha" },
+    { "key": "his", "name": "History", "ability": "int" },
+    { "key": "ins", "name": "Insight", "ability": "wis" },
+    { "key": "itm", "name": "Intimidation", "ability": "cha" },
+    { "key": "inv", "name": "Investigation", "ability": "int" },
+    { "key": "med", "name": "Medicine", "ability": "wis" },
+    { "key": "nat", "name": "Nature", "ability": "int" },
+    { "key": "prc", "name": "Perception", "ability": "wis" },
+    { "key": "prf", "name": "Performance", "ability": "cha" },
+    { "key": "per", "name": "Persuasion", "ability": "cha" },
+    { "key": "rel", "name": "Religion", "ability": "int" },
+    { "key": "slt", "name": "Sleight of Hand", "ability": "dex" },
+    { "key": "ste", "name": "Stealth", "ability": "dex" },
+    { "key": "sur", "name": "Survival", "ability": "wis" }
+  ]
+}

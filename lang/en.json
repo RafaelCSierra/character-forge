@@ -1,0 +1,109 @@
+{
+  "CHARACTER_FORGE": {
+    "Button": "Forge Character",
+    "ButtonHint": "Open the Character Forge creation wizard.",
+    "Wizard": {
+      "Title": "Character Forge"
+    },
+    "Nav": {
+      "Back": "Back",
+      "Next": "Next",
+      "Reset": "Reset",
+      "Forge": "Forge Character",
+      "Forging": "Forging..."
+    },
+    "Step": {
+      "Identity": "Identity",
+      "Race": "Race & Heritage",
+      "Class": "Class & Calling",
+      "Background": "Background",
+      "Abilities": "Ability Scores",
+      "Skills": "Skills",
+      "Spells": "Spells",
+      "Equipment": "Equipment",
+      "Review": "Review & Forge"
+    },
+    "Identity": {
+      "Desc": "Let's start with the basics of who your character is.",
+      "Name": "Name",
+      "NameLabel": "Character name",
+      "NamePlaceholder": "e.g. Lirien Sunblade",
+      "NameHint": "Your character's name. You can change it later on the actor sheet.",
+      "Alignment": "Alignment",
+      "AlignmentLabel": "Moral and ethical alignment (optional)",
+      "AlignmentNone": "— Not chosen —",
+      "AlignmentHint": "Alignment describes how your character relates to law and chaos, good and evil. Skip if you'd rather decide through play.",
+      "Portrait": "Portrait",
+      "PortraitLabel": "Portrait image path (optional)",
+      "PortraitPlaceholder": "icons/svg/mystery-man.svg",
+      "PortraitHint": "Path to an image file inside your Foundry data. You can set or change this later on the actor sheet."
+    },
+    "Alignment": {
+      "LawfulGood":     "Lawful Good",
+      "NeutralGood":    "Neutral Good",
+      "ChaoticGood":    "Chaotic Good",
+      "LawfulNeutral":  "Lawful Neutral",
+      "TrueNeutral":    "True Neutral",
+      "ChaoticNeutral": "Chaotic Neutral",
+      "LawfulEvil":     "Lawful Evil",
+      "NeutralEvil":    "Neutral Evil",
+      "ChaoticEvil":    "Chaotic Evil"
+    },
+    "Abilities": {
+      "Method": {
+        "PointBuy": "Point-buy (27 points)",
+        "StandardArray": "Standard array (15, 14, 13, 12, 10, 8)",
+        "Roll": "Roll 4d6, drop lowest"
+      }
+    },
+    "DraftSaved": "Draft saved",
+    "ResetConfirmTitle": "Reset wizard?",
+    "ResetConfirmContent": "This will discard everything you've entered so far. Are you sure?",
+    "Settings": {
+      "DefaultAbilityMethod": "Default ability score method",
+      "DefaultAbilityMethodHint": "Which method to preselect on the Ability Scores step.",
+      "AllowMulticlass": "Allow multiclass",
+      "AllowMulticlassHint": "Enable the multiclass option in the Level Up wizard.",
+      "AllowFeatAtLevel1": "Allow feat at level 1 (variant rule)",
+      "AllowFeatAtLevel1Hint": "Per the optional rule in the PHB, characters gain one feat at character creation.",
+      "ImportedOverridesSrd": "Imported content overrides SRD",
+      "ImportedOverridesSrdHint": "When an imported entry has the same key as an SRD entry, prefer the imported one.",
+      "AutoTickXp": "Auto-tick XP after level-up",
+      "AutoTickXpHint": "Award XP to the actor automatically when the Level Up wizard completes."
+    },
+    "Notify": {
+      "NoName": "Please enter a character name before continuing.",
+      "DraftPending": "Character Forge: a saved draft is available. Open the wizard to resume.",
+      "ForgeNotReady": "Character Forge: creation pipeline is being assembled. More steps coming soon.",
+      "WrongSystem": "Character Forge requires the D&D 5e system.",
+      "OldSystem": "Character Forge requires D&D 5e {required}+. Detected version: {current}. Some features may not work.",
+      "SrdLoadError": "Character Forge: failed to load the bundled SRD data. The wizard will not work until this is fixed."
+    },
+    "SRD": {
+      "Race": {
+        "Human": {
+          "name": "Human",
+          "desc": "Humans are the most adaptable and ambitious people among the common races."
+        }
+      },
+      "Class": {
+        "Fighter": {
+          "name": "Fighter",
+          "desc": "A master of martial combat, skilled with a variety of weapons and armor."
+        }
+      },
+      "Subclass": {
+        "Champion": {
+          "name": "Champion",
+          "desc": "Focused on the physical perfection of body and weapon mastery."
+        }
+      },
+      "Background": {
+        "Soldier": {
+          "name": "Soldier",
+          "desc": "War has been your life for as long as you care to remember."
+        }
+      }
+    }
+  }
+}

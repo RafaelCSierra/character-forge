@@ -1,0 +1,239 @@
+/* ============================================
+   Character Forge — Wizard Styles
+   Compatible with Foundry VTT v13 dark theme
+   ============================================ */
+
+/* --- Theme tokens --- */
+.cf-wizard {
+  --cf-accent: #c97b3b;
+  --cf-accent-light: #f0a86b;
+  --cf-success: #4a8c5c;
+  --cf-danger: #e74c3c;
+  --cf-imported-badge: #c19c39;
+}
+
+/* --- App window --- */
+.cf-wizard {
+  min-width: 640px;
+  min-height: 560px;
+}
+
+.cf-wizard .window-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cf-wizard-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cf-steps-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Step content visibility --- */
+.cf-step {
+  display: none;
+  padding: 14px 18px;
+  flex: 1;
+}
+
+.cf-step.active {
+  display: block;
+}
+
+.cf-step h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.25em;
+  border-bottom: 2px solid color-mix(in srgb, var(--cf-accent) 60%, transparent);
+  padding-bottom: 6px;
+}
+
+.cf-step-description {
+  margin: 0 0 14px 0;
+  font-style: italic;
+  opacity: 0.75;
+  font-size: 0.9em;
+}
+
+/* --- Step indicator bar --- */
+.cf-steps-bar {
+  display: flex;
+  gap: 0;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.cf-step-indicator {
+  flex: 1;
+  text-align: center;
+  padding: 6px 4px;
+  font-size: 0.8em;
+  opacity: 0.4;
+  border-bottom: 3px solid transparent;
+  cursor: default;
+  transition: opacity 0.2s;
+}
+
+.cf-step-indicator.active {
+  opacity: 1;
+  font-weight: bold;
+  border-bottom-color: var(--cf-accent);
+}
+
+.cf-step-indicator.completed {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.cf-step-indicator.completed:hover {
+  opacity: 1;
+}
+
+.cf-step-number {
+  display: inline-block;
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cf-accent) 30%, transparent);
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+.cf-step-indicator.active .cf-step-number {
+  background: var(--cf-accent);
+  color: #fff;
+}
+
+.cf-steps-bar.compact .cf-step-indicator {
+  font-size: 0.72em;
+}
+
+/* --- Draft saved indicator --- */
+.cf-draft-indicator {
+  position: absolute;
+  right: 14px;
+  bottom: 4px;
+  font-size: 0.7em;
+  opacity: 0;
+  color: var(--cf-success);
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.cf-draft-indicator.visible {
+  opacity: 1;
+}
+
+/* --- Fieldsets / fields --- */
+.cf-fieldset {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 0 0 12px 0;
+}
+
+.cf-fieldset legend {
+  padding: 0 6px;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.cf-field-label {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+.cf-field input[type="text"],
+.cf-field select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cf-help {
+  margin: 4px 0 0 0;
+  font-size: 0.8em;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* --- Navigation bar --- */
+.cf-wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cf-wizard-nav button {
+  flex: 0 0 auto;
+  min-width: 100px;
+  padding: 6px 14px;
+}
+
+.cf-wizard-nav .cf-forge-btn {
+  background: var(--cf-accent);
+  color: #fff;
+  font-weight: bold;
+}
+
+.cf-wizard-nav .cf-forge-btn:hover {
+  background: var(--cf-accent-light);
+}
+
+.cf-wizard-nav .cf-reset-btn {
+  opacity: 0.75;
+}
+
+/* --- Sidebar button (Actor Directory) --- */
+.cf-sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: color-mix(in srgb, var(--cf-accent, #c97b3b) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cf-accent, #c97b3b) 60%, transparent);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.cf-sidebar-btn:hover {
+  background: color-mix(in srgb, var(--cf-accent, #c97b3b) 50%, transparent);
+}
+
+.cf-sidebar-btn i {
+  font-size: 0.9em;
+}
+
+/* --- Imported content badge (used by future steps when source !== "SRD") --- */
+.cf-imported-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-left: 6px;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  background: var(--cf-imported-badge);
+  color: #000;
+  border-radius: 3px;
+}
