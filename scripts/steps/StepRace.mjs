@@ -110,32 +110,52 @@ export default class StepRace {
   getContext(data) {
     const all = DataRegistry.getRaces();
 
-    const races = all.map(r => ({
-      key: r.key,
-      displayName: localizedRaceName(r),
-      asiSummary: asiSummary(r),
-      sizeLabel: sizeLabel(r.size),
-      speed: r.speed,
-      imported: !!r._imported,
-      hasSubraces: (r.subraces || []).length > 0
-    }));
+    const races = all.map(r => {
+      const isCompendium = r.source === "compendium";
+      const sLabel = isCompendium ? "" : sizeLabel(r.size);
+      const sp = isCompendium ? null : r.speed;
+      return {
+        key: r.key,
+        displayName: isCompendium ? r.name : localizedRaceName(r),
+        // Compendium entries lack parsed asi/size/speed (they live inside
+        // system.advancement[]) — leave those lines blank and rely on the
+        // source badge + preview snippet instead.
+        asiSummary: isCompendium ? "" : asiSummary(r),
+        sizeLabel: sLabel,
+        speed: sp,
+        showMeta: !!(sLabel || sp),
+        img: r.img || null,
+        sourceLabel: r._packLabel || (r._imported ? t("CHARACTER_FORGE.Imported") : ""),
+        isCompendium,
+        imported: !!r._imported,
+        hasSubraces: (r.subraces || []).length > 0
+      };
+    });
 
     const selectedRaw = all.find(r => r.key === data.raceKey) || null;
+    const isCompendiumSelected = selectedRaw?.source === "compendium";
+
     let selectedSubrace = null;
     if (selectedRaw && data.subraceKey) {
       selectedSubrace = (selectedRaw.subraces || []).find(s => s.key === data.subraceKey) || null;
     }
 
-    const previewRace = selectedRaw ? mergeSubrace(selectedRaw, selectedSubrace) : null;
+    const previewRace = selectedRaw && !isCompendiumSelected
+      ? mergeSubrace(selectedRaw, selectedSubrace)
+      : selectedRaw;
 
     const selectedRace = previewRace ? {
       key: selectedRaw.key,
-      displayName: localizedRaceName(selectedRaw),
-      asiSummary: asiSummary(previewRace),
-      sizeLabel: sizeLabel(previewRace.size),
-      speed: previewRace.speed,
-      languagesSummary: languagesSummary(previewRace),
-      traits: previewRace.traits || [],
+      displayName: isCompendiumSelected ? selectedRaw.name : localizedRaceName(selectedRaw),
+      img: selectedRaw.img || null,
+      isCompendium: isCompendiumSelected,
+      sourceLabel: selectedRaw._packLabel || (selectedRaw._imported ? t("CHARACTER_FORGE.Imported") : ""),
+      asiSummary: isCompendiumSelected ? "" : asiSummary(previewRace),
+      sizeLabel: isCompendiumSelected ? "" : sizeLabel(previewRace.size),
+      speed: isCompendiumSelected ? null : previewRace.speed,
+      languagesSummary: isCompendiumSelected ? "" : languagesSummary(previewRace),
+      descriptionSnippet: selectedRaw.descriptionSnippet || "",
+      traits: isCompendiumSelected ? [] : (previewRace.traits || []),
       subraces: (selectedRaw.subraces || []).map(s => ({
         key: s.key,
         displayName: localizedRaceName(s),
@@ -148,7 +168,11 @@ export default class StepRace {
       raceKey: data.raceKey || "",
       subraceKey: data.subraceKey || "",
       selectedRace,
-      needsSubrace: !!(selectedRaw && (selectedRaw.subraces || []).length > 0)
+      // Subrace step only shown for SRD entries with subraces. Compendium
+      // races already have subraces packaged as separate top-level entries
+      // (Plutonium splits Hill Dwarf and Mountain Dwarf into two race
+      // items rather than nesting).
+      needsSubrace: !!(selectedRaw && !isCompendiumSelected && (selectedRaw.subraces || []).length > 0)
     };
   }
 

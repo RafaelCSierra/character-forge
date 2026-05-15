@@ -9,6 +9,7 @@
  */
 
 import { MODULE_ID } from "../utils.mjs";
+import CompendiumScanner from "./CompendiumScanner.mjs";
 
 const DataRegistry = {
   _srd: {
@@ -46,17 +47,27 @@ const DataRegistry = {
   },
 
   /**
-   * Merge SRD + imported entries on `key`. Imported wins when override is on.
+   * Merge SRD + compendium + imported entries on `key`.
+   *
+   * Priority (when override is on, default): imported > compendium > SRD.
+   * Compendium entries use compound keys (`comp:<pack>:<id>`) so they
+   * never collide with SRD keys, but importing is allowed to shadow
+   * a same-named entry from SRD if the user opts in.
    */
-  _merge(srdList, importedList) {
+  _merge(srdList, compendiumList, importedList) {
     const override = this._shouldImportedOverride();
     const map = new Map();
 
-    // Seed with SRD
-    for (const entry of srdList) {
+    // 1) Seed with SRD
+    for (const entry of srdList || []) {
       map.set(entry.key, { ...entry, _source: entry.source || "SRD-5.1" });
     }
-    // Layer imported
+    // 2) Layer compendium — never collides on key (compound) so always added
+    for (const entry of compendiumList || []) {
+      if (!entry || !entry.key) continue;
+      map.set(entry.key, { ...entry });
+    }
+    // 3) Layer imported (manual JSON import)
     for (const entry of importedList || []) {
       if (!entry || !entry.key) continue;
       if (map.has(entry.key) && !override) continue;
@@ -67,7 +78,7 @@ const DataRegistry = {
 
   getRaces() {
     const imported = this._getImported().races || [];
-    return this._merge(this._srd.races, imported);
+    return this._merge(this._srd.races, CompendiumScanner.get("race"), imported);
   },
 
   getRace(key) {
@@ -76,7 +87,7 @@ const DataRegistry = {
 
   getBackgrounds() {
     const imported = this._getImported().backgrounds || [];
-    return this._merge(this._srd.backgrounds, imported);
+    return this._merge(this._srd.backgrounds, CompendiumScanner.get("background"), imported);
   },
 
   getBackground(key) {
@@ -85,7 +96,7 @@ const DataRegistry = {
 
   getClasses() {
     const imported = this._getImported().classes || [];
-    return this._merge(this._srd.classes, imported);
+    return this._merge(this._srd.classes, CompendiumScanner.get("class"), imported);
   },
 
   getClass(key) {
@@ -94,7 +105,7 @@ const DataRegistry = {
 
   getEquipment() {
     const imported = this._getImported().equipment || [];
-    return this._merge(this._srd.equipment, imported);
+    return this._merge(this._srd.equipment, [], imported);
   },
 
   getEquipmentItem(key) {

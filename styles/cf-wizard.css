@@ -332,6 +332,35 @@
   background: color-mix(in srgb, var(--cf-accent) 5%, transparent);
 }
 
+.cf-wizard .cf-race-card-compendium {
+  border-style: dashed;
+}
+
+.cf-wizard .cf-race-card-compendium.selected {
+  border-style: solid;
+}
+
+.cf-wizard .cf-race-card-img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.cf-race-snippet {
+  margin: 6px 0 8px;
+  font-size: 0.88em;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.cf-muted {
+  opacity: 0.65;
+  font-style: italic;
+}
+
 /* --- Race preview panel --- */
 .cf-race-preview .cf-race-meta-line {
   margin: 2px 0;

@@ -6,6 +6,7 @@
 import { MODULE_ID, MODULE_PATH, t, log, warn, checkSystemCompatibility } from "./utils.mjs";
 import CharacterForgeWizard from "./CharacterForgeWizard.mjs";
 import SrdLoader from "./data/SrdLoader.mjs";
+import CompendiumScanner from "./data/CompendiumScanner.mjs";
 
 // =============================================================================
 // Singletons
@@ -94,6 +95,16 @@ Hooks.once("init", () => {
     default: false
   });
 
+  // Map of pack collection ID → true when the user has explicitly disabled
+  // it from being scanned for races/classes/etc. Default: all packs scanned.
+  // Configured later via a future "Pack picker" dialog.
+  game.settings.register(MODULE_ID, "compendiumPacksDisabled", {
+    scope: "world",
+    config: false,
+    type: Object,
+    default: {}
+  });
+
   // Preload Handlebars templates used by the wizard.
   // (The wizard shell itself is built programmatically; only step content
   // templates need to be preloaded.)
@@ -129,6 +140,14 @@ Hooks.once("ready", async () => {
   } catch (err) {
     console.error("Character Forge | Failed to load SRD data:", err);
     ui.notifications.error(t("CHARACTER_FORGE.Notify.SrdLoadError"));
+  }
+
+  // Scan installed compendium packs for races/classes/etc.
+  // Failure here is non-fatal — wizard still works with SRD-only content.
+  try {
+    await CompendiumScanner.scan();
+  } catch (err) {
+    console.error("Character Forge | Compendium scan failed:", err);
   }
 
   // Draft notification — one-shot if user left a draft mid-creation last session.

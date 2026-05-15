@@ -7,18 +7,24 @@
     <div class="cf-race-grid">
       {{#each races}}
       <button type="button"
-              class="cf-race-card{{#if (eq ../raceKey this.key)}} selected{{/if}}"
+              class="cf-race-card{{#if (eq ../raceKey this.key)}} selected{{/if}}{{#if this.isCompendium}} cf-race-card-compendium{{/if}}"
               data-action="select-race"
               data-race="{{this.key}}">
         <div class="cf-race-card-header">
+          {{#if this.img}}<img class="cf-race-card-img" src="{{this.img}}" alt="">{{/if}}
           <span class="cf-race-card-name">{{this.displayName}}</span>
-          {{#if this.imported}}<span class="cf-imported-badge">{{localize "CHARACTER_FORGE.Imported"}}</span>{{/if}}
+          {{#if this.sourceLabel}}<span class="cf-imported-badge" title="{{this.sourceLabel}}">{{this.sourceLabel}}</span>{{/if}}
         </div>
+        {{#if this.asiSummary}}
         <div class="cf-race-card-asi">{{this.asiSummary}}</div>
+        {{/if}}
+        {{#if this.showMeta}}
         <div class="cf-race-card-meta">
-          {{this.sizeLabel}} · {{localize "CHARACTER_FORGE.Race.SpeedShort"}} {{this.speed}}
+          {{#if this.sizeLabel}}{{this.sizeLabel}}{{/if}}
+          {{#if this.speed}} · {{localize "CHARACTER_FORGE.Race.SpeedShort"}} {{this.speed}}{{/if}}
           {{#if this.hasSubraces}}<span class="cf-race-card-subbadge">{{localize "CHARACTER_FORGE.Race.HasSubraces"}}</span>{{/if}}
         </div>
+        {{/if}}
       </button>
       {{/each}}
     </div>
@@ -45,30 +51,43 @@
 
   {{#if selectedRace}}
   <fieldset class="cf-fieldset cf-race-preview">
-    <legend>{{selectedRace.displayName}}</legend>
-    <p class="cf-race-meta-line">
-      <strong>{{localize "CHARACTER_FORGE.Race.SizeLabel"}}:</strong> {{selectedRace.sizeLabel}}
-      &middot;
-      <strong>{{localize "CHARACTER_FORGE.Race.SpeedLabel"}}:</strong> {{selectedRace.speed}} ft.
-    </p>
-    <p class="cf-race-meta-line">
-      <strong>{{localize "CHARACTER_FORGE.Race.AsiLabel"}}:</strong> {{selectedRace.asiSummary}}
-    </p>
-    {{#if selectedRace.languagesSummary}}
-    <p class="cf-race-meta-line">
-      <strong>{{localize "CHARACTER_FORGE.Race.LanguagesLabel"}}:</strong> {{selectedRace.languagesSummary}}
-    </p>
-    {{/if}}
-    {{#if selectedRace.traits.length}}
-    <div class="cf-race-traits">
-      {{#each selectedRace.traits}}
-      <div class="cf-trait">
-        <div class="cf-trait-name">{{this.name}}</div>
-        <div class="cf-trait-desc">{{this.desc}}</div>
+    <legend>
+      {{selectedRace.displayName}}
+      {{#if selectedRace.sourceLabel}}<span class="cf-imported-badge">{{selectedRace.sourceLabel}}</span>{{/if}}
+    </legend>
+
+    {{#unless selectedRace.isCompendium}}
+      <p class="cf-race-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Race.SizeLabel"}}:</strong> {{selectedRace.sizeLabel}}
+        &middot;
+        <strong>{{localize "CHARACTER_FORGE.Race.SpeedLabel"}}:</strong> {{selectedRace.speed}} ft.
+      </p>
+      <p class="cf-race-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Race.AsiLabel"}}:</strong> {{selectedRace.asiSummary}}
+      </p>
+      {{#if selectedRace.languagesSummary}}
+      <p class="cf-race-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Race.LanguagesLabel"}}:</strong> {{selectedRace.languagesSummary}}
+      </p>
+      {{/if}}
+      {{#if selectedRace.traits.length}}
+      <div class="cf-race-traits">
+        {{#each selectedRace.traits}}
+        <div class="cf-trait">
+          <div class="cf-trait-name">{{this.name}}</div>
+          <div class="cf-trait-desc">{{this.desc}}</div>
+        </div>
+        {{/each}}
       </div>
-      {{/each}}
-    </div>
-    {{/if}}
+      {{/if}}
+    {{else}}
+      {{#if selectedRace.descriptionSnippet}}
+      <p class="cf-race-snippet">{{selectedRace.descriptionSnippet}}</p>
+      {{else}}
+      <p class="cf-race-snippet cf-muted">{{localize "CHARACTER_FORGE.Race.CompendiumNoSnippet"}}</p>
+      {{/if}}
+      <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Race.CompendiumNote"}}</p>
+    {{/unless}}
   </fieldset>
   {{else}}
   <p class="cf-step-empty">{{localize "CHARACTER_FORGE.Race.SelectPrompt"}}</p>

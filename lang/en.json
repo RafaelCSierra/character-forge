@@ -44,6 +44,8 @@
       "Choose": "Choose a race",
       "ChooseSubrace": "Choose a subrace",
       "SelectPrompt": "Select a race above to see its full details.",
+      "CompendiumNoSnippet": "No preview text available for this race. Selecting it will use the version stored in the compendium.",
+      "CompendiumNote": "This race comes from an installed compendium. Ability score increases, traits, and proficiencies will be applied by D&D 5e's native advancement system when the character is forged.",
       "SizeLabel": "Size",
       "SpeedLabel": "Speed",
       "SpeedShort": "Speed",

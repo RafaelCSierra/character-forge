@@ -44,6 +44,8 @@
       "Choose": "Escolha uma raça",
       "ChooseSubrace": "Escolha uma sub-raça",
       "SelectPrompt": "Selecione uma raça acima para ver os detalhes completos.",
+      "CompendiumNoSnippet": "Sem texto de prévia para esta raça. Ao selecioná-la será usada a versão armazenada no compêndio.",
+      "CompendiumNote": "Esta raça vem de um compêndio instalado. Aumentos de atributo, traços e proficiências serão aplicados pelo sistema de progressão nativo do D&D 5e quando o personagem for forjado.",
       "SizeLabel": "Tamanho",
       "SpeedLabel": "Deslocamento",
       "SpeedShort": "Desloc.",
