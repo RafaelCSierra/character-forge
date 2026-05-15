@@ -2,6 +2,7 @@
   "CHARACTER_FORGE": {
     "Button": "Forge Character",
     "ButtonHint": "Open the Character Forge creation wizard.",
+    "Imported": "Imported",
     "Wizard": {
       "Title": "Character Forge"
     },
@@ -38,6 +39,41 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Path to an image file inside your Foundry data. You can set or change this later on the actor sheet."
     },
+    "Race": {
+      "Desc": "Pick your character's race. Each race grants ability score bonuses, traits, and a starting size & speed. Some races have subraces with extra options.",
+      "Choose": "Choose a race",
+      "ChooseSubrace": "Choose a subrace",
+      "SelectPrompt": "Select a race above to see its full details.",
+      "SizeLabel": "Size",
+      "SpeedLabel": "Speed",
+      "SpeedShort": "Speed",
+      "AsiLabel": "Ability Score Increase",
+      "LanguagesLabel": "Languages",
+      "HasSubraces": "has subraces",
+      "AsiAll": "+{amount} to all abilities",
+      "AsiChoose": "+{amount} to {n} ability of your choice",
+      "AnyLanguage": "+{n} language of your choice",
+      "Size": {
+        "Tiny": "Tiny",
+        "Small": "Small",
+        "Medium": "Medium",
+        "Large": "Large"
+      }
+    },
+    "Language": {
+      "Common": "Common",
+      "Dwarvish": "Dwarvish",
+      "Elvish": "Elvish",
+      "Halfling": "Halfling",
+      "Gnomish": "Gnomish",
+      "Draconic": "Draconic",
+      "Orc": "Orc",
+      "Infernal": "Infernal",
+      "Celestial": "Celestial",
+      "Abyssal": "Abyssal",
+      "Sylvan": "Sylvan",
+      "Undercommon": "Undercommon"
+    },
     "Alignment": {
       "LawfulGood":     "Lawful Good",
       "NeutralGood":    "Neutral Good",
@@ -73,6 +109,8 @@
     },
     "Notify": {
       "NoName": "Please enter a character name before continuing.",
+      "NoRace": "Please choose a race before continuing.",
+      "NoSubrace": "This race has subraces — please pick one before continuing.",
       "DraftPending": "Character Forge: a saved draft is available. Open the wizard to resume.",
       "ForgeNotReady": "Character Forge: creation pipeline is being assembled. More steps coming soon.",
       "WrongSystem": "Character Forge requires the D&D 5e system.",
@@ -81,10 +119,23 @@
     },
     "SRD": {
       "Race": {
-        "Human": {
-          "name": "Human",
-          "desc": "Humans are the most adaptable and ambitious people among the common races."
-        }
+        "Dwarf":              { "name": "Dwarf" },
+        "HillDwarf":          { "name": "Hill Dwarf" },
+        "MountainDwarf":      { "name": "Mountain Dwarf" },
+        "Elf":                { "name": "Elf" },
+        "HighElf":            { "name": "High Elf" },
+        "WoodElf":            { "name": "Wood Elf" },
+        "Halfling":           { "name": "Halfling" },
+        "LightfootHalfling":  { "name": "Lightfoot Halfling" },
+        "StoutHalfling":      { "name": "Stout Halfling" },
+        "Human":              { "name": "Human", "desc": "Humans are the most adaptable and ambitious people among the common races." },
+        "Dragonborn":         { "name": "Dragonborn" },
+        "Gnome":              { "name": "Gnome" },
+        "ForestGnome":        { "name": "Forest Gnome" },
+        "RockGnome":          { "name": "Rock Gnome" },
+        "HalfElf":            { "name": "Half-Elf" },
+        "HalfOrc":            { "name": "Half-Orc" },
+        "Tiefling":           { "name": "Tiefling" }
       },
       "Class": {
         "Fighter": {

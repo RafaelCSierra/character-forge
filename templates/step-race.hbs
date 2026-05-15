@@ -1,0 +1,76 @@
+<section class="cf-step" data-step="race">
+  <h2>{{localize "CHARACTER_FORGE.Step.Race"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Race.Desc"}}</p>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Race.Choose"}}</legend>
+    <div class="cf-race-grid">
+      {{#each races}}
+      <button type="button"
+              class="cf-race-card{{#if (eq ../raceKey this.key)}} selected{{/if}}"
+              data-action="select-race"
+              data-race="{{this.key}}">
+        <div class="cf-race-card-header">
+          <span class="cf-race-card-name">{{this.displayName}}</span>
+          {{#if this.imported}}<span class="cf-imported-badge">{{localize "CHARACTER_FORGE.Imported"}}</span>{{/if}}
+        </div>
+        <div class="cf-race-card-asi">{{this.asiSummary}}</div>
+        <div class="cf-race-card-meta">
+          {{this.sizeLabel}} · {{localize "CHARACTER_FORGE.Race.SpeedShort"}} {{this.speed}}
+          {{#if this.hasSubraces}}<span class="cf-race-card-subbadge">{{localize "CHARACTER_FORGE.Race.HasSubraces"}}</span>{{/if}}
+        </div>
+      </button>
+      {{/each}}
+    </div>
+  </fieldset>
+
+  {{#if needsSubrace}}
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Race.ChooseSubrace"}}</legend>
+    <div class="cf-race-grid">
+      {{#each selectedRace.subraces}}
+      <button type="button"
+              class="cf-race-card cf-race-card-sub{{#if (eq ../subraceKey this.key)}} selected{{/if}}"
+              data-action="select-subrace"
+              data-subrace="{{this.key}}">
+        <div class="cf-race-card-header">
+          <span class="cf-race-card-name">{{this.displayName}}</span>
+        </div>
+        <div class="cf-race-card-asi">{{this.asiSummary}}</div>
+      </button>
+      {{/each}}
+    </div>
+  </fieldset>
+  {{/if}}
+
+  {{#if selectedRace}}
+  <fieldset class="cf-fieldset cf-race-preview">
+    <legend>{{selectedRace.displayName}}</legend>
+    <p class="cf-race-meta-line">
+      <strong>{{localize "CHARACTER_FORGE.Race.SizeLabel"}}:</strong> {{selectedRace.sizeLabel}}
+      &middot;
+      <strong>{{localize "CHARACTER_FORGE.Race.SpeedLabel"}}:</strong> {{selectedRace.speed}} ft.
+    </p>
+    <p class="cf-race-meta-line">
+      <strong>{{localize "CHARACTER_FORGE.Race.AsiLabel"}}:</strong> {{selectedRace.asiSummary}}
+    </p>
+    {{#if selectedRace.languagesSummary}}
+    <p class="cf-race-meta-line">
+      <strong>{{localize "CHARACTER_FORGE.Race.LanguagesLabel"}}:</strong> {{selectedRace.languagesSummary}}
+    </p>
+    {{/if}}
+    {{#if selectedRace.traits.length}}
+    <div class="cf-race-traits">
+      {{#each selectedRace.traits}}
+      <div class="cf-trait">
+        <div class="cf-trait-name">{{this.name}}</div>
+        <div class="cf-trait-desc">{{this.desc}}</div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </fieldset>
+  {{else}}
+  <p class="cf-step-empty">{{localize "CHARACTER_FORGE.Race.SelectPrompt"}}</p>
+  {{/if}}
+</section>

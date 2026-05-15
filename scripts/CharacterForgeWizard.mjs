@@ -10,6 +10,7 @@
 
 import { MODULE_ID, MODULE_PATH, t, log } from "./utils.mjs";
 import StepIdentity from "./steps/StepIdentity.mjs";
+import StepRace from "./steps/StepRace.mjs";
 
 const { ApplicationV2 } = foundry.applications.api;
 
@@ -83,7 +84,9 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "step-back": CharacterForgeWizard._onStepBack,
       "step-jump": CharacterForgeWizard._onStepJump,
       "forge": CharacterForgeWizard._onForge,
-      "clear": CharacterForgeWizard._onClear
+      "clear": CharacterForgeWizard._onClear,
+      "select-race": CharacterForgeWizard._onSelectRace,
+      "select-subrace": CharacterForgeWizard._onSelectSubrace
     }
   };
 
@@ -100,11 +103,12 @@ export default class CharacterForgeWizard extends ApplicationV2 {
   // ===========================================================================
 
   _registerSteps() {
-    // For v0.1 we ship StepIdentity. Additional steps are pushed here as
-    // they are implemented: StepRace, StepClass, StepBackground, StepAbilities,
-    // StepSkills, StepSpells, StepEquipment, StepReview.
+    // Additional steps will be pushed here as implemented: StepClass,
+    // StepBackground, StepAbilities, StepSkills, StepSpells, StepEquipment,
+    // StepReview.
     this._steps = [
-      new StepIdentity(this)
+      new StepIdentity(this),
+      new StepRace(this)
     ];
   }
 
@@ -328,6 +332,26 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       content: `<p>${t("CHARACTER_FORGE.ResetConfirmContent")}</p>`,
       yes: () => this._resetWizard()
     });
+  }
+
+  static _onSelectRace(event, target) {
+    const key = target.dataset.race;
+    if (!key) return;
+    this._captureCurrentStepData();
+    this._data.raceKey = key;
+    // Reset subrace when parent changes — keeps state consistent.
+    this._data.subraceKey = "";
+    this._saveDraft();
+    this.render();
+  }
+
+  static _onSelectSubrace(event, target) {
+    const key = target.dataset.subrace;
+    if (!key) return;
+    this._captureCurrentStepData();
+    this._data.subraceKey = key;
+    this._saveDraft();
+    this.render();
   }
 
   static async _onForge(event, target) {

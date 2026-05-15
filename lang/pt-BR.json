@@ -2,6 +2,7 @@
   "CHARACTER_FORGE": {
     "Button": "Forjar Personagem",
     "ButtonHint": "Abrir o assistente de criação de personagem do Character Forge.",
+    "Imported": "Importado",
     "Wizard": {
       "Title": "Character Forge"
     },
@@ -38,6 +39,41 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Caminho para um arquivo de imagem dentro do seu Foundry. Pode definir ou alterar depois na ficha."
     },
+    "Race": {
+      "Desc": "Escolha a raça do seu personagem. Cada raça concede bônus de atributo, traços e um tamanho & velocidade iniciais. Algumas raças têm sub-raças com opções extras.",
+      "Choose": "Escolha uma raça",
+      "ChooseSubrace": "Escolha uma sub-raça",
+      "SelectPrompt": "Selecione uma raça acima para ver os detalhes completos.",
+      "SizeLabel": "Tamanho",
+      "SpeedLabel": "Deslocamento",
+      "SpeedShort": "Desloc.",
+      "AsiLabel": "Aumento de Atributo",
+      "LanguagesLabel": "Idiomas",
+      "HasSubraces": "tem sub-raças",
+      "AsiAll": "+{amount} em todos os atributos",
+      "AsiChoose": "+{amount} em {n} atributo à sua escolha",
+      "AnyLanguage": "+{n} idioma à sua escolha",
+      "Size": {
+        "Tiny": "Minúsculo",
+        "Small": "Pequeno",
+        "Medium": "Médio",
+        "Large": "Grande"
+      }
+    },
+    "Language": {
+      "Common": "Comum",
+      "Dwarvish": "Anão",
+      "Elvish": "Élfico",
+      "Halfling": "Halfling",
+      "Gnomish": "Gnômico",
+      "Draconic": "Dracônico",
+      "Orc": "Orc",
+      "Infernal": "Infernal",
+      "Celestial": "Celestial",
+      "Abyssal": "Abissal",
+      "Sylvan": "Silvestre",
+      "Undercommon": "Subterrâneo"
+    },
     "Alignment": {
       "LawfulGood":     "Leal e Bom",
       "NeutralGood":    "Neutro e Bom",
@@ -73,6 +109,8 @@
     },
     "Notify": {
       "NoName": "Por favor, insira um nome para o personagem antes de continuar.",
+      "NoRace": "Por favor, escolha uma raça antes de continuar.",
+      "NoSubrace": "Esta raça tem sub-raças — escolha uma antes de continuar.",
       "DraftPending": "Character Forge: há um rascunho salvo. Abra o assistente para retomar.",
       "ForgeNotReady": "Character Forge: o pipeline de criação ainda está sendo montado. Mais etapas em breve.",
       "WrongSystem": "Character Forge requer o sistema D&D 5e.",
@@ -81,10 +119,23 @@
     },
     "SRD": {
       "Race": {
-        "Human": {
-          "name": "Humano",
-          "desc": "Humanos são o povo mais adaptável e ambicioso entre as raças comuns."
-        }
+        "Dwarf":              { "name": "Anão" },
+        "HillDwarf":          { "name": "Anão da Colina" },
+        "MountainDwarf":      { "name": "Anão da Montanha" },
+        "Elf":                { "name": "Elfo" },
+        "HighElf":            { "name": "Alto Elfo" },
+        "WoodElf":            { "name": "Elfo da Floresta" },
+        "Halfling":           { "name": "Halfling" },
+        "LightfootHalfling":  { "name": "Halfling Pés-Leves" },
+        "StoutHalfling":      { "name": "Halfling Robusto" },
+        "Human":              { "name": "Humano", "desc": "Humanos são o povo mais adaptável e ambicioso entre as raças comuns." },
+        "Dragonborn":         { "name": "Draconato" },
+        "Gnome":              { "name": "Gnomo" },
+        "ForestGnome":        { "name": "Gnomo da Floresta" },
+        "RockGnome":          { "name": "Gnomo das Rochas" },
+        "HalfElf":            { "name": "Meio-Elfo" },
+        "HalfOrc":            { "name": "Meio-Orc" },
+        "Tiefling":           { "name": "Tiefling" }
       },
       "Class": {
         "Fighter": {

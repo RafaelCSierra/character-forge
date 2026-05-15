@@ -98,7 +98,8 @@ Hooks.once("init", () => {
   // (The wizard shell itself is built programmatically; only step content
   // templates need to be preloaded.)
   loadTemplates([
-    `modules/${MODULE_PATH}/templates/step-identity.hbs`
+    `modules/${MODULE_PATH}/templates/step-identity.hbs`,
+    `modules/${MODULE_PATH}/templates/step-race.hbs`
   ]);
 });
 
