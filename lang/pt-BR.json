@@ -39,6 +39,22 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Caminho para um arquivo de imagem dentro do seu Foundry. Pode definir ou alterar depois na ficha."
     },
+    "Class": {
+      "Desc": "Escolha a classe do seu personagem. A classe determina seu dado de vida, proficiências em testes de resistência, atributo principal e os recursos que você ganha em cada nível. A escolha de subclasse acontece automaticamente quando você atingir o nível apropriado.",
+      "Choose": "Escolha uma classe",
+      "SelectPrompt": "Selecione uma classe acima para ver os detalhes completos.",
+      "HitDie": "Dado de Vida",
+      "Primary": "Principal",
+      "Saves": "Testes de Resistência",
+      "SavesShort": "TR",
+      "Armor": "Proficiência em Armaduras",
+      "Weapons": "Proficiência em Armas",
+      "SkillsChoice": "Escolhas de Perícia",
+      "SkillsChoiceText": "Escolher {choose} da lista de perícias da classe (será feito no passo Perícias).",
+      "SrdNote": "Esta classe foi montada a partir do SRD embarcado do Character Forge. Para concessão automática de recursos e o passo-a-passo do Advancement do dnd5e, use os compêndios de classe do sistema dnd5e ou importe via Plutonium.",
+      "CompendiumNoSnippet": "Sem texto de prévia para esta classe. Ao selecioná-la será usada a versão armazenada no compêndio.",
+      "CompendiumNote": "Esta classe vem de um compêndio instalado. Perícias, estilo de luta, pontos de vida e concessões de recursos serão aplicados pelo sistema de progressão nativo do D&D 5e quando o personagem for forjado."
+    },
     "Race": {
       "Desc": "Escolha a raça do seu personagem. Cada raça concede bônus de atributo, traços e um tamanho & velocidade iniciais. Algumas raças têm sub-raças com opções extras.",
       "Choose": "Escolha uma raça",
@@ -140,6 +156,7 @@
       "NoName": "Por favor, insira um nome para o personagem antes de continuar.",
       "NoRace": "Por favor, escolha uma raça antes de continuar.",
       "NoSubrace": "Esta raça tem sub-raças — escolha uma antes de continuar.",
+      "NoClass": "Por favor, escolha uma classe antes de continuar.",
       "AbilitiesOverBudget": "O total de pontos excede 27. Reduza alguns valores antes de continuar.",
       "AbilitiesOutOfRange": "Cada valor de compra por pontos deve ficar entre 8 e 15.",
       "AbilitiesUnassigned": "Atribua um valor a cada atributo antes de continuar.",

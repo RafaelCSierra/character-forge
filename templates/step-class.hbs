@@ -1,0 +1,82 @@
+<section class="cf-step" data-step="class">
+  <h2>{{localize "CHARACTER_FORGE.Step.Class"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Class.Desc"}}</p>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Class.Choose"}}</legend>
+    <div class="cf-class-grid">
+      {{#each classes}}
+      <button type="button"
+              class="cf-class-card{{#if (eq ../classKey this.key)}} selected{{/if}}{{#if this.isCompendium}} cf-class-card-compendium{{/if}}"
+              data-action="select-class"
+              data-class="{{this.key}}">
+        <div class="cf-class-card-header">
+          {{#if this.img}}<img class="cf-class-card-img" src="{{this.img}}" alt="">{{/if}}
+          <span class="cf-class-card-name">{{this.displayName}}</span>
+        </div>
+        {{#if this.showStats}}
+        <div class="cf-class-card-stats">
+          {{#if this.hitDieLabel}}<span class="cf-class-stat">{{this.hitDieLabel}}</span>{{/if}}
+          {{#if this.primaryLabel}}<span class="cf-class-stat">{{this.primaryLabel}}</span>{{/if}}
+        </div>
+        {{#if this.savesLabel}}
+        <div class="cf-class-card-saves">{{localize "CHARACTER_FORGE.Class.SavesShort"}}: {{this.savesLabel}}</div>
+        {{/if}}
+        {{/if}}
+        {{#if this.sourceLabel}}
+        <div class="cf-class-card-source" title="{{this.sourceLabel}}">{{this.sourceLabel}}</div>
+        {{/if}}
+      </button>
+      {{/each}}
+    </div>
+  </fieldset>
+
+  {{#if selectedClass}}
+  <fieldset class="cf-fieldset cf-class-preview">
+    <legend>
+      {{selectedClass.displayName}}
+      {{#if selectedClass.sourceLabel}}<span class="cf-imported-badge">{{selectedClass.sourceLabel}}</span>{{/if}}
+    </legend>
+
+    {{#unless selectedClass.isCompendium}}
+      {{#if selectedClass.hitDieLabel}}
+      <p class="cf-class-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Class.HitDie"}}:</strong> {{selectedClass.hitDieLabel}}
+        {{#if selectedClass.primaryLabel}}&middot; <strong>{{localize "CHARACTER_FORGE.Class.Primary"}}:</strong> {{selectedClass.primaryLabel}}{{/if}}
+      </p>
+      {{/if}}
+      {{#if selectedClass.savesLabel}}
+      <p class="cf-class-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Class.Saves"}}:</strong> {{selectedClass.savesLabel}}
+      </p>
+      {{/if}}
+      {{#if selectedClass.hasArmor}}
+      <p class="cf-class-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Class.Armor"}}:</strong> {{selectedClass.armorList}}
+      </p>
+      {{/if}}
+      {{#if selectedClass.hasWeapons}}
+      <p class="cf-class-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Class.Weapons"}}:</strong> {{selectedClass.weaponList}}
+      </p>
+      {{/if}}
+      {{#if selectedClass.skillChoice}}
+      <p class="cf-class-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Class.SkillsChoice"}}:</strong>
+        {{localize "CHARACTER_FORGE.Class.SkillsChoiceText" choose=selectedClass.skillChoice.choose}}
+      </p>
+      {{/if}}
+      <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Class.SrdNote"}}</p>
+    {{else}}
+      {{#if selectedClass.descriptionSnippet}}
+      <p class="cf-class-snippet">{{selectedClass.descriptionSnippet}}</p>
+      {{else}}
+      <p class="cf-class-snippet cf-muted">{{localize "CHARACTER_FORGE.Class.CompendiumNoSnippet"}}</p>
+      {{/if}}
+      <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Class.CompendiumNote"}}</p>
+    {{/unless}}
+  </fieldset>
+  {{else}}
+  <p class="cf-step-empty">{{localize "CHARACTER_FORGE.Class.SelectPrompt"}}</p>
+  {{/if}}
+</section>

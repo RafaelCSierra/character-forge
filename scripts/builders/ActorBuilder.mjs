@@ -42,6 +42,44 @@ function buildAbilitiesPayload(baseScores) {
   return out;
 }
 
+/** Build a minimal dnd5e class Item at level 1 from a bundled-SRD entry. */
+function buildSrdClassItem(cls) {
+  const parts = [];
+  if (cls.hitDie) parts.push(`<p><strong>Hit Die:</strong> d${cls.hitDie}</p>`);
+  if (cls.savingThrows?.length) {
+    parts.push(`<p><strong>Saving Throws:</strong> ${cls.savingThrows.map(s => s.toUpperCase()).join(", ")}</p>`);
+  }
+  if (cls.armorProficiencies?.length) {
+    parts.push(`<p><strong>Armor:</strong> ${cls.armorProficiencies.join(", ")}</p>`);
+  }
+  if (cls.weaponProficiencies?.length) {
+    parts.push(`<p><strong>Weapons:</strong> ${cls.weaponProficiencies.join(", ")}</p>`);
+  }
+  if (cls.skillProficiencies?.choose) {
+    parts.push(`<p><strong>Skills:</strong> choose ${cls.skillProficiencies.choose} from ${(cls.skillProficiencies.from || []).join(", ")}</p>`);
+  }
+  parts.push(`<p><em>This class was built from Character Forge's bundled SRD data — no automatic advancement chain. For a fully-driven creation flow, use the dnd5e system's class compendiums or import via Plutonium.</em></p>`);
+
+  return {
+    name: cls.name,
+    type: "class",
+    img: cls.img || "icons/svg/mystery-man.svg",
+    system: {
+      identifier: cls.key,
+      levels: 1,
+      hitDice: `d${cls.hitDie || 6}`,
+      hitDiceUsed: 0,
+      saves: cls.savingThrows || [],
+      primaryAbility: {
+        value: cls.primaryAbility || [],
+        all: false
+      },
+      description: { value: parts.join("\n") },
+      source: { custom: "Character Forge — SRD bundled" }
+    }
+  };
+}
+
 /** Build a minimal dnd5e race Item from a bundled-SRD entry. */
 function buildSrdRaceItem(race) {
   const parts = [];
@@ -76,7 +114,10 @@ const ActorBuilder = {
    * @returns {Promise<Actor>}
    */
   async build(data) {
-    const raceItem = await this._resolveRaceItem(data);
+    const [raceItem, classItem] = await Promise.all([
+      this._resolveRaceItem(data),
+      this._resolveClassItem(data)
+    ]);
 
     const actorData = {
       name: data.name?.trim() || t("CHARACTER_FORGE.Notify.DefaultName"),
@@ -96,12 +137,24 @@ const ActorBuilder = {
       throw new Error("Actor.create returned null — likely a permissions issue.");
     }
 
+    // Embed items one at a time so each Advancement chain (race traits,
+    // then class proficiencies / fighting style / spellcasting / etc.)
+    // walks the user through its own AdvancementManager session before
+    // the next item is added.
     if (raceItem) {
       log("Embedding race item:", raceItem.name);
       try {
         await actor.createEmbeddedDocuments("Item", [raceItem]);
       } catch (err) {
         warn("Failed to embed race item:", err);
+      }
+    }
+    if (classItem) {
+      log("Embedding class item:", classItem.name);
+      try {
+        await actor.createEmbeddedDocuments("Item", [classItem]);
+      } catch (err) {
+        warn("Failed to embed class item:", err);
       }
     }
 
@@ -147,6 +200,39 @@ const ActorBuilder = {
       + t("CHARACTER_FORGE.Notify.SrdRaceNote");
 
     return buildSrdRaceItem(merged);
+  },
+
+  /** Resolve the class the user selected into a Foundry Item document data. */
+  async _resolveClassItem(data) {
+    if (!data.classKey) return null;
+    const cls = DataRegistry.getClass(data.classKey);
+    if (!cls) {
+      warn(`Class not found in registry: ${data.classKey}`);
+      return null;
+    }
+
+    // 1) Compendium-sourced: clone original. dnd5e Advancement handles
+    //    skills / fighting style / spellcasting / proficiencies / HP.
+    if (cls.uuid) {
+      try {
+        const doc = await fromUuid(cls.uuid);
+        if (doc) {
+          const obj = doc.toObject();
+          delete obj._id;
+          // Ensure new characters start at level 1 explicitly — some
+          // compendium templates ship with levels: 0, which would make
+          // the AdvancementManager prompt for a level instead of
+          // walking the level-1 chain.
+          foundry.utils.setProperty(obj, "system.levels", 1);
+          return obj;
+        }
+      } catch (err) {
+        warn(`Failed to load compendium class ${cls.uuid}:`, err);
+      }
+    }
+
+    // 2) Bundled SRD: synthesise a minimal level-1 class Item.
+    return buildSrdClassItem(cls);
   }
 };
 

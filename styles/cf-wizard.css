@@ -241,18 +241,21 @@
   border-radius: 3px;
 }
 
-/* --- Race step: card grid + preview ---
+/* --- Race / Class step: card grid + preview ---
    IMPORTANT: Foundry applies aggressive defaults to <button> (min-height,
    line-height, padding) that break flex/grid sizing. We reset with
    `all: unset` and re-declare every property we care about. Same trick
-   used by lore-forge's .lf-card.                                       */
-.cf-race-grid {
+   used by lore-forge's .lf-card. Both .cf-race-card and .cf-class-card
+   share the base behaviour.                                            */
+.cf-race-grid,
+.cf-class-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 8px;
 }
 
-.cf-wizard .cf-race-card {
+.cf-wizard .cf-race-card,
+.cf-wizard .cf-class-card {
   all: unset;
   box-sizing: border-box;
   display: flex;
@@ -269,13 +272,15 @@
   transition: transform 0.1s, border-color 0.15s, background 0.15s;
 }
 
-.cf-wizard .cf-race-card:hover {
+.cf-wizard .cf-race-card:hover,
+.cf-wizard .cf-class-card:hover {
   border-color: color-mix(in srgb, var(--cf-accent) 60%, transparent);
   background: color-mix(in srgb, var(--cf-accent) 12%, transparent);
   transform: translateY(-1px);
 }
 
-.cf-wizard .cf-race-card.selected {
+.cf-wizard .cf-race-card.selected,
+.cf-wizard .cf-class-card.selected {
   border-color: var(--cf-accent);
   background: color-mix(in srgb, var(--cf-accent) 22%, transparent);
   box-shadow: 0 0 6px color-mix(in srgb, var(--cf-accent) 35%, transparent);
@@ -285,8 +290,11 @@
    rules can re-apply unwanted line-height/display/font-size to spans
    nested inside <button>. We then explicitly re-style each piece.    */
 .cf-wizard .cf-race-card *,
+.cf-wizard .cf-class-card *,
 .cf-wizard .cf-race-card *::before,
-.cf-wizard .cf-race-card *::after {
+.cf-wizard .cf-class-card *::before,
+.cf-wizard .cf-race-card *::after,
+.cf-wizard .cf-class-card *::after {
   all: unset;
   box-sizing: border-box;
 }
@@ -332,12 +340,85 @@
   background: color-mix(in srgb, var(--cf-accent) 5%, transparent);
 }
 
-.cf-wizard .cf-race-card-compendium {
+.cf-wizard .cf-race-card-compendium,
+.cf-wizard .cf-class-card-compendium {
   border-style: dashed;
 }
 
-.cf-wizard .cf-race-card-compendium.selected {
+.cf-wizard .cf-race-card-compendium.selected,
+.cf-wizard .cf-class-card-compendium.selected {
   border-style: solid;
+}
+
+/* Class card pieces — mirror race card structure */
+.cf-wizard .cf-class-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.cf-wizard .cf-class-card-img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.cf-wizard .cf-class-card-name {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1.2;
+}
+
+.cf-wizard .cf-class-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.85em;
+  line-height: 1.3;
+  opacity: 0.85;
+}
+
+.cf-wizard .cf-class-stat {
+  display: inline-block;
+}
+
+.cf-wizard .cf-class-card-saves {
+  font-size: 0.75em;
+  line-height: 1.3;
+  opacity: 0.65;
+}
+
+.cf-wizard .cf-class-card-source {
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 0.7em;
+  line-height: 1.2;
+  opacity: 0.55;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cf-class-preview .cf-class-meta-line {
+  margin: 2px 0;
+  font-size: 0.9em;
+}
+
+.cf-class-snippet {
+  margin: 6px 0 8px;
+  font-size: 0.88em;
+  line-height: 1.45;
+  opacity: 0.85;
+  max-height: 14em;
+  overflow-y: auto;
 }
 
 .cf-wizard .cf-race-card-img {

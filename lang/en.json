@@ -39,6 +39,22 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Path to an image file inside your Foundry data. You can set or change this later on the actor sheet."
     },
+    "Class": {
+      "Desc": "Pick your character's class. The class determines your hit die, saving-throw proficiencies, primary ability, and the features you gain at each level. Subclass selection happens automatically when you reach the appropriate level.",
+      "Choose": "Choose a class",
+      "SelectPrompt": "Select a class above to see its full details.",
+      "HitDie": "Hit Die",
+      "Primary": "Primary",
+      "Saves": "Saving Throws",
+      "SavesShort": "Saves",
+      "Armor": "Armor Training",
+      "Weapons": "Weapon Training",
+      "SkillsChoice": "Skill Choices",
+      "SkillsChoiceText": "Pick {choose} from the class skill list (handled in the Skills step).",
+      "SrdNote": "This class was built from Character Forge's bundled SRD data. For automatic feature grants and the dnd5e Advancement walkthrough, use the dnd5e system's class compendiums or import via Plutonium.",
+      "CompendiumNoSnippet": "No preview text available for this class. Selecting it will use the version stored in the compendium.",
+      "CompendiumNote": "This class comes from an installed compendium. Skills, fighting style, hit points, and feature grants will be applied by D&D 5e's native advancement system when the character is forged."
+    },
     "Race": {
       "Desc": "Pick your character's race. Each race grants ability score bonuses, traits, and a starting size & speed. Some races have subraces with extra options.",
       "Choose": "Choose a race",
@@ -140,6 +156,7 @@
       "NoName": "Please enter a character name before continuing.",
       "NoRace": "Please choose a race before continuing.",
       "NoSubrace": "This race has subraces — please pick one before continuing.",
+      "NoClass": "Please choose a class before continuing.",
       "AbilitiesOverBudget": "Point-buy total exceeds 27 points. Lower some scores before continuing.",
       "AbilitiesOutOfRange": "Each point-buy score must be between 8 and 15.",
       "AbilitiesUnassigned": "Assign a value to every ability before continuing.",
