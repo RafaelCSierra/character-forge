@@ -39,6 +39,26 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Caminho para um arquivo de imagem dentro do seu Foundry. Pode definir ou alterar depois na ficha."
     },
+    "PackPicker": {
+      "Title": "Fontes de Conteúdo",
+      "Open": "Gerenciar fontes de conteúdo",
+      "Help": "O assistente lê cards de raça / classe / antecedente / magia / talento / item de cada pack de compêndio listado aqui. Desmarque os que você não quer ver no assistente — útil para esconder packs duplicados como \"Classes (SRD)\" e \"Classes (2024)\", ou para limitar importações do Plutonium a um livro específico.",
+      "SelectAll": "Habilitar todos",
+      "SelectNone": "Desabilitar todos",
+      "Enabled": "habilitados",
+      "NoRelevantItems": "sem itens relevantes",
+      "Cancel": "Cancelar",
+      "Save": "Salvar e rescanear",
+      "Saved": "Fontes de conteúdo atualizadas. Rescaneando compêndios…",
+      "Type": {
+        "race": "raças",
+        "class": "classes",
+        "subclass": "subclasses",
+        "background": "antecedentes",
+        "feat": "talentos",
+        "spell": "magias"
+      }
+    },
     "Class": {
       "Desc": "Escolha a classe do seu personagem. A classe determina seu dado de vida, proficiências em testes de resistência, atributo principal e os recursos que você ganha em cada nível. A escolha de subclasse acontece automaticamente quando você atingir o nível apropriado.",
       "Choose": "Escolha uma classe",

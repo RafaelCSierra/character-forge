@@ -53,6 +53,9 @@ const DataRegistry = {
    * Compendium entries use compound keys (`comp:<pack>:<id>`) so they
    * never collide with SRD keys, but importing is allowed to shadow
    * a same-named entry from SRD if the user opts in.
+   *
+   * Result is sorted by display name so duplicates from different packs
+   * land next to each other in the card grid (much easier to compare).
    */
   _merge(srdList, compendiumList, importedList) {
     const override = this._shouldImportedOverride();
@@ -73,7 +76,20 @@ const DataRegistry = {
       if (map.has(entry.key) && !override) continue;
       map.set(entry.key, { ...entry, _source: entry.source || "imported", _imported: true });
     }
-    return Array.from(map.values());
+
+    const list = Array.from(map.values());
+    // Sort by displayed name (case-insensitive), then by pack label so
+    // duplicates (e.g. "Fighter" from three different packs) appear
+    // consecutively in the wizard's grid.
+    list.sort((a, b) => {
+      const an = String(a.name || "").toLowerCase();
+      const bn = String(b.name || "").toLowerCase();
+      if (an !== bn) return an < bn ? -1 : 1;
+      const ap = String(a._packLabel || a._source || "").toLowerCase();
+      const bp = String(b._packLabel || b._source || "").toLowerCase();
+      return ap < bp ? -1 : ap > bp ? 1 : 0;
+    });
+    return list;
   },
 
   getRaces() {

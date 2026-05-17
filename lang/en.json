@@ -39,6 +39,26 @@
       "PortraitPlaceholder": "icons/svg/mystery-man.svg",
       "PortraitHint": "Path to an image file inside your Foundry data. You can set or change this later on the actor sheet."
     },
+    "PackPicker": {
+      "Title": "Content Sources",
+      "Open": "Manage content sources",
+      "Help": "The wizard pulls race / class / background / spell / feat / item cards from every Foundry compendium pack listed here. Uncheck the ones you don't want to see in the wizard — typically used to hide duplicate \"Classes (SRD)\" and \"Classes (2024)\" packs, or to scope Plutonium imports to a specific source book.",
+      "SelectAll": "Enable all",
+      "SelectNone": "Disable all",
+      "Enabled": "enabled",
+      "NoRelevantItems": "no relevant items",
+      "Cancel": "Cancel",
+      "Save": "Save and rescan",
+      "Saved": "Content sources updated. Re-scanning compendiums…",
+      "Type": {
+        "race": "races",
+        "class": "classes",
+        "subclass": "subclasses",
+        "background": "backgrounds",
+        "feat": "feats",
+        "spell": "spells"
+      }
+    },
     "Class": {
       "Desc": "Pick your character's class. The class determines your hit die, saving-throw proficiencies, primary ability, and the features you gain at each level. Subclass selection happens automatically when you reach the appropriate level.",
       "Choose": "Choose a class",

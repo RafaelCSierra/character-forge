@@ -14,6 +14,7 @@ import StepRace from "./steps/StepRace.mjs";
 import StepClass from "./steps/StepClass.mjs";
 import StepAbilities from "./steps/StepAbilities.mjs";
 import ActorBuilder from "./builders/ActorBuilder.mjs";
+import CompendiumPackPicker from "./data/CompendiumPackPicker.mjs";
 import {
   ABILITY_KEYS,
   POINT_BUY_MIN,
@@ -87,7 +88,15 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     window: {
       title: "CHARACTER_FORGE.Wizard.Title",
       resizable: true,
-      icon: "fas fa-hammer"
+      icon: "fas fa-hammer",
+      controls: [
+        {
+          action: "manage-packs",
+          icon: "fas fa-folder-tree",
+          label: "CHARACTER_FORGE.PackPicker.Open",
+          visible: () => true
+        }
+      ]
     },
     position: {
       width: 720,
@@ -105,7 +114,8 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "select-ability-method": CharacterForgeWizard._onSelectAbilityMethod,
       "ability-inc": CharacterForgeWizard._onAbilityInc,
       "ability-dec": CharacterForgeWizard._onAbilityDec,
-      "ability-roll": CharacterForgeWizard._onAbilityRoll
+      "ability-roll": CharacterForgeWizard._onAbilityRoll,
+      "manage-packs": CharacterForgeWizard._onManagePacks
     }
   };
 
@@ -113,6 +123,17 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     super(options);
     this._registerSteps();
     this._restoreDraft();
+    // Refresh whenever the pack picker saves so new/removed content is
+    // reflected immediately.
+    this._packPickerHook = Hooks.on("character-forge:packPickerSaved", () => this.render());
+  }
+
+  async close(options) {
+    if (this._packPickerHook) {
+      Hooks.off("character-forge:packPickerSaved", this._packPickerHook);
+      this._packPickerHook = null;
+    }
+    return super.close(options);
   }
 
   // ===========================================================================
@@ -428,6 +449,13 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     this._data.baseScores[ab] = cur - 1;
     this._saveDraft();
     this.render();
+  }
+
+  // -------------------- Compendium pack picker --------------------
+
+  static _onManagePacks(event, target) {
+    const picker = new CompendiumPackPicker();
+    picker.render(true);
   }
 
   static async _onAbilityRoll(event, target) {
