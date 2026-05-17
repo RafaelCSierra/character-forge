@@ -13,7 +13,6 @@
         <div class="cf-race-card-header">
           {{#if this.img}}<img class="cf-race-card-img" src="{{this.img}}" alt="">{{/if}}
           <span class="cf-race-card-name">{{this.displayName}}</span>
-          {{#if this.sourceLabel}}<span class="cf-imported-badge" title="{{this.sourceLabel}}">{{this.sourceLabel}}</span>{{/if}}
         </div>
         {{#if this.asiSummary}}
         <div class="cf-race-card-asi">{{this.asiSummary}}</div>
@@ -24,6 +23,9 @@
           {{#if this.speed}} · {{localize "CHARACTER_FORGE.Race.SpeedShort"}} {{this.speed}}{{/if}}
           {{#if this.hasSubraces}}<span class="cf-race-card-subbadge">{{localize "CHARACTER_FORGE.Race.HasSubraces"}}</span>{{/if}}
         </div>
+        {{/if}}
+        {{#if this.sourceLabel}}
+        <div class="cf-race-card-source" title="{{this.sourceLabel}}">{{this.sourceLabel}}</div>
         {{/if}}
       </button>
       {{/each}}

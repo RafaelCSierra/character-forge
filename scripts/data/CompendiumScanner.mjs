@@ -32,13 +32,42 @@ function slugKey(raw) {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Extract the first ~280 chars of the HTML description as plain text. */
-function descriptionSnippet(html) {
+/**
+ * Extract a readable snippet from a dnd5e Item's `system.description.value`.
+ *
+ * The raw value is HTML with two kinds of noise we have to handle:
+ *   1. Foundry text-enrichment tags: `@Embed[…]`, `@UUID[…]{label}`,
+ *      `@Compendium[…]`, `@Check[…]`, etc. — those resolve to interactive
+ *      widgets in real rendering, but as plain text they're junk.
+ *   2. Block-level HTML (<p>, <h3>, <li>…) — `textContent` joins adjacent
+ *      blocks with no space, producing run-ons like "Human TraitsCreature
+ *      Type: HumanoidSize: Medium".
+ *
+ * We strip enrichment shorthand, inject a space before each block close,
+ * decode entities, collapse whitespace, then truncate at a word boundary.
+ */
+function descriptionSnippet(html, maxChars = 500) {
   if (!html) return "";
+
+  let txt = String(html);
+  // 1. Strip enrichment shorthand: @Word[anything](optional {label})
+  txt = txt.replace(/@\w+\[[^\]]*\](?:\{[^}]*\})?/g, "");
+  // 2. Insert a space before each closing block tag so adjacent blocks
+  //    don't run together when textContent is extracted.
+  txt = txt.replace(/<\/(p|div|h[1-6]|li|tr|td|th|section|article)>/gi, " </$1>");
+  // 3. Strip remaining HTML tags and decode entities via DOM.
   const tmp = document.createElement("div");
-  tmp.innerHTML = String(html);
-  const text = (tmp.textContent || "").replace(/\s+/g, " ").trim();
-  return text.length > 280 ? `${text.slice(0, 277)}…` : text;
+  tmp.innerHTML = txt;
+  txt = (tmp.textContent || "").replace(/\s+/g, " ").trim();
+
+  if (txt.length <= maxChars) return txt;
+
+  // 4. Truncate at the last word boundary before maxChars (avoid mid-word
+  //    cuts like "Speed: 3...").
+  const cut = txt.slice(0, maxChars - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  const safeCut = lastSpace > maxChars * 0.6 ? cut.slice(0, lastSpace) : cut;
+  return `${safeCut}…`;
 }
 
 const CompendiumScanner = {
