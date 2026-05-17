@@ -113,7 +113,9 @@ Hooks.once("init", () => {
     `modules/${MODULE_PATH}/templates/step-race.hbs`,
     `modules/${MODULE_PATH}/templates/step-class.hbs`,
     `modules/${MODULE_PATH}/templates/step-background.hbs`,
-    `modules/${MODULE_PATH}/templates/step-abilities.hbs`
+    `modules/${MODULE_PATH}/templates/step-abilities.hbs`,
+    `modules/${MODULE_PATH}/templates/step-equipment.hbs`,
+    `modules/${MODULE_PATH}/templates/step-review.hbs`
   ]);
 });
 

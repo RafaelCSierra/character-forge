@@ -59,6 +59,24 @@
         "spell": "magias"
       }
     },
+    "Equipment": {
+      "Desc": "Escolha seu equipamento inicial entre as opções oferecidas pela classe {class}. Itens do antecedente e ouro inicial são adicionados automaticamente.",
+      "FromClass": "Da sua classe",
+      "FromBackground": "Do seu antecedente ({background})",
+      "PlusGold": "Mais {gold} po de recursos iniciais.",
+      "Note": "Esta etapa só aparece para classes do SRD embarcado que trazem escolhas de equipamento já parseadas. Classes vindas de compêndios recebem equipamento inicial via o Advancement nativo de Starting Equipment do dnd5e quando a classe é adicionada.",
+      "Choice": {
+        "Armor": "Armadura",
+        "PrimaryWeapon": "Arma principal",
+        "Ranged": "Opção à distância",
+        "Pack": "Mochila de aventureiro"
+      }
+    },
+    "Review": {
+      "Desc": "Uma última conferida antes de forjar. Clique em qualquer etapa anterior na barra de progresso acima para fazer alterações.",
+      "Level1": "Nível 1",
+      "AdvancementTip": "Ao clicar em Forjar Personagem, o Advancement Manager do D&D 5e vai te guiar pelas escolhas definidas pela sua raça, classe e antecedente (escolhas de perícia, estilo de luta, rolagem de pontos de vida, etc.). Equipamento de classes vindas de compêndios é tratado na aba Starting Equipment da ficha do personagem."
+    },
     "Background": {
       "Desc": "Escolha o antecedente do seu personagem. O antecedente concede duas proficiências em perícias, frequentemente proficiências em ferramentas ou idiomas, um recurso não-mecânico e uma pequena quantidade de ouro e equipamento iniciais.",
       "Choose": "Escolha um antecedente",

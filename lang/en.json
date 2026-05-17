@@ -59,6 +59,24 @@
         "spell": "spells"
       }
     },
+    "Equipment": {
+      "Desc": "Pick your starting equipment from the options offered by the {class} class. Background items and starting gold are added automatically.",
+      "FromClass": "From your class",
+      "FromBackground": "From your background ({background})",
+      "PlusGold": "Plus {gold} gp in starting funds.",
+      "Note": "This step is shown only for SRD-bundled classes that ship parsed equipment choices. Compendium-sourced classes get their starting gear via D&D 5e's native Starting Equipment advancement when the class is added.",
+      "Choice": {
+        "Armor": "Armor",
+        "PrimaryWeapon": "Primary weapon",
+        "Ranged": "Ranged option",
+        "Pack": "Adventuring pack"
+      }
+    },
+    "Review": {
+      "Desc": "One last look before forging. Click any earlier step in the progress bar above to make changes.",
+      "Level1": "Level 1",
+      "AdvancementTip": "When you click Forge Character, the D&D 5e Advancement Manager will walk you through any choices defined by your race, class, and background (skill picks, fighting style, hit-point roll, etc.). Equipment from compendium classes is handled on the character sheet's Starting Equipment tab."
+    },
     "Background": {
       "Desc": "Pick your character's background. The background grants two skill proficiencies, often tool proficiencies or languages, a non-mechanical feature, and a small amount of starting gold and gear.",
       "Choose": "Choose a background",

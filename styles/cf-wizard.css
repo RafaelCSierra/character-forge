@@ -857,6 +857,212 @@
   padding: 6px 16px;
 }
 
+/* =====================================================================
+   Equipment step — A/B option picker
+   ===================================================================== */
+
+.cf-equipment-choice {
+  margin-bottom: 12px;
+}
+
+.cf-equipment-choice-title {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.cf-equipment-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .cf-equipment-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cf-wizard .cf-equipment-option {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  border: 2px solid color-mix(in srgb, currentColor 15%, transparent);
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.cf-wizard .cf-equipment-option:hover {
+  border-color: color-mix(in srgb, var(--cf-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--cf-accent) 12%, transparent);
+}
+
+.cf-wizard .cf-equipment-option.selected {
+  border-color: var(--cf-accent);
+  background: color-mix(in srgb, var(--cf-accent) 22%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--cf-accent) 35%, transparent);
+}
+
+.cf-wizard .cf-equipment-option *,
+.cf-wizard .cf-equipment-option *::before,
+.cf-wizard .cf-equipment-option *::after {
+  all: unset;
+  box-sizing: border-box;
+}
+
+.cf-wizard .cf-equipment-option-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  line-height: 1.3;
+}
+
+.cf-wizard .cf-equipment-option-items {
+  font-size: 0.8em;
+  line-height: 1.35;
+  opacity: 0.7;
+}
+
+.cf-equipment-bg-list {
+  margin: 4px 0 6px 0;
+  padding-left: 22px;
+}
+
+.cf-equipment-bg-list li {
+  margin: 2px 0;
+  font-size: 0.9em;
+}
+
+/* =====================================================================
+   Review step — final summary grid
+   ===================================================================== */
+
+.cf-review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 8px 0 14px;
+}
+
+@media (max-width: 600px) {
+  .cf-review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cf-review-section {
+  padding: 10px 14px;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border-left: 3px solid var(--cf-accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.cf-review-section h3 {
+  margin: 0 0 4px 0;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.cf-review-name {
+  margin: 0 0 2px 0;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.cf-review-line {
+  margin: 0 0 2px 0;
+  font-size: 1em;
+}
+
+.cf-review-source {
+  margin: 0;
+  font-size: 0.75em;
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.cf-review-portrait {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: cover;
+  float: right;
+  margin-left: 8px;
+  margin-bottom: 4px;
+}
+
+.cf-review-identity {
+  grid-column: 1 / -1;
+  display: block;
+}
+
+.cf-review-abilities {
+  grid-column: 1 / -1;
+}
+
+.cf-review-abilities-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 6px 0;
+}
+
+@media (max-width: 600px) {
+  .cf-review-abilities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cf-review-ability {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border-radius: 4px;
+}
+
+.cf-review-ab-label {
+  font-size: 0.75em;
+  opacity: 0.7;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.cf-review-ab-value {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.cf-review-ab-mod {
+  font-size: 0.85em;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+.cf-review-tip {
+  margin: 12px 0 0 0;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--cf-accent) 10%, transparent);
+  border-radius: 4px;
+  font-size: 0.88em;
+  line-height: 1.4;
+}
+
+.cf-review-tip i {
+  color: var(--cf-accent);
+  margin-right: 6px;
+}
+
 /* --- Race preview panel --- */
 .cf-race-preview .cf-race-meta-line {
   margin: 2px 0;

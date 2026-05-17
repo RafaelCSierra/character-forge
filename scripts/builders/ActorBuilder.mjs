@@ -42,6 +42,54 @@ function buildAbilitiesPayload(baseScores) {
   return out;
 }
 
+/** Map a bundled equipment definition to a Foundry Item data object.
+ *  Uses very loose heuristics on `type` (armor / weapon / ammo / pack / gear)
+ *  to set the right dnd5e item type. The result is intentionally minimal
+ *  — just enough so the item appears on the sheet with a name, qty, and
+ *  a description that captures the SRD stat block.                      */
+function buildSrdEquipmentItem(eq, qty = 1) {
+  const TYPE_MAP = {
+    armor: "equipment",
+    weapon: "weapon",
+    ammo: "consumable",
+    pack: "container",
+    gear: "loot"
+  };
+  const dndType = TYPE_MAP[eq.type] || "loot";
+
+  const descParts = [];
+  if (eq.type === "armor") {
+    if (eq.armorType) descParts.push(`<p><strong>Armor:</strong> ${eq.armorType}</p>`);
+    if (Number.isFinite(eq.ac)) descParts.push(`<p><strong>AC:</strong> ${eq.ac}</p>`);
+    if (eq.strRequirement) descParts.push(`<p><strong>Strength:</strong> ${eq.strRequirement}</p>`);
+    if (eq.stealthDisadvantage) descParts.push(`<p><strong>Stealth:</strong> Disadvantage</p>`);
+  }
+  if (eq.type === "weapon") {
+    if (eq.damage) descParts.push(`<p><strong>Damage:</strong> ${eq.damage}</p>`);
+    if (eq.versatile) descParts.push(`<p><strong>Versatile:</strong> ${eq.versatile}</p>`);
+    if (eq.range) descParts.push(`<p><strong>Range:</strong> ${eq.range}</p>`);
+    if (eq.thrown) descParts.push(`<p><strong>Thrown:</strong> ${eq.thrown}</p>`);
+  }
+  if (Number.isFinite(eq.weight)) descParts.push(`<p><strong>Weight:</strong> ${eq.weight} lb</p>`);
+
+  const system = {
+    quantity: qty,
+    weight: { value: eq.weight || 0, units: "lb" },
+    description: { value: descParts.join("\n") },
+    source: { custom: "Character Forge — SRD bundled" }
+  };
+  if (Number.isFinite(eq.cost?.gp)) {
+    system.price = { value: eq.cost.gp, denomination: "gp" };
+  }
+
+  return {
+    name: eq.name,
+    type: dndType,
+    img: "icons/svg/item-bag.svg",
+    system
+  };
+}
+
 /** Build a minimal dnd5e background Item from a bundled-SRD entry. */
 function buildSrdBackgroundItem(bg) {
   const parts = [];
@@ -151,6 +199,7 @@ const ActorBuilder = {
       this._resolveClassItem(data),
       this._resolveBackgroundItem(data)
     ]);
+    const equipmentItems = this._resolveStartingEquipment(data);
 
     const actorData = {
       name: data.name?.trim() || t("CHARACTER_FORGE.Notify.DefaultName"),
@@ -196,6 +245,23 @@ const ActorBuilder = {
         await actor.createEmbeddedDocuments("Item", [backgroundItem]);
       } catch (err) {
         warn("Failed to embed background item:", err);
+      }
+    }
+    if (equipmentItems.length) {
+      log(`Embedding ${equipmentItems.length} starting-equipment items.`);
+      try {
+        await actor.createEmbeddedDocuments("Item", equipmentItems);
+      } catch (err) {
+        warn("Failed to embed starting equipment:", err);
+      }
+    }
+    // Apply background starting gold to currency.
+    const bg = DataRegistry.getBackground(data.backgroundKey);
+    if (bg && !bg.uuid && bg.startingGold) {
+      try {
+        await actor.update({ "system.currency.gp": bg.startingGold });
+      } catch (err) {
+        warn("Failed to set starting gold:", err);
       }
     }
 
@@ -302,6 +368,47 @@ const ActorBuilder = {
 
     // 2) Bundled SRD: synthesise a minimal Item with description-only.
     return buildSrdBackgroundItem(bg);
+  },
+
+  /**
+   * Compile the starting-equipment item list from the user's choices.
+   *
+   * Sources:
+   *   - For SRD-bundled classes: each `startingEquipment.choices` group
+   *     contributes the items from the user-picked option (defaults to
+   *     option 0 if the user never opened the Equipment step).
+   *   - For SRD-bundled backgrounds: all fixed `equipment` entries.
+   *
+   * Compendium classes contribute nothing here — their starting gear
+   * is handled by dnd5e's StartingEquipment advancement at item-add
+   * time.
+   */
+  _resolveStartingEquipment(data) {
+    const items = [];
+
+    const cls = DataRegistry.getClass(data.classKey);
+    if (cls && !cls.uuid) {
+      const choices = cls.startingEquipment?.choices || [];
+      for (const choice of choices) {
+        const idx = data.equipmentChoices?.[choice.id] ?? 0;
+        const opt = (choice.options || [])[idx];
+        if (!opt) continue;
+        for (const ref of opt.items || []) {
+          const eq = DataRegistry.getEquipmentItem(ref.key);
+          if (eq) items.push(buildSrdEquipmentItem(eq, ref.qty || 1));
+        }
+      }
+    }
+
+    const bg = DataRegistry.getBackground(data.backgroundKey);
+    if (bg && !bg.uuid) {
+      for (const ref of bg.equipment || []) {
+        const eq = DataRegistry.getEquipmentItem(ref.key);
+        if (eq) items.push(buildSrdEquipmentItem(eq, ref.qty || 1));
+      }
+    }
+
+    return items;
   }
 };
 

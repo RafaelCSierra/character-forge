@@ -1,0 +1,58 @@
+<section class="cf-step" data-step="review">
+  <h2>{{localize "CHARACTER_FORGE.Step.Review"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Review.Desc"}}</p>
+
+  <div class="cf-review-grid">
+    <div class="cf-review-section cf-review-identity">
+      <h3>{{localize "CHARACTER_FORGE.Step.Identity"}}</h3>
+      {{#if hasPortrait}}<img src="{{portrait}}" class="cf-review-portrait" alt="">{{/if}}
+      <p class="cf-review-name">{{name}}</p>
+      <p class="cf-muted">{{alignmentLabel}}</p>
+    </div>
+
+    {{#if race}}
+    <div class="cf-review-section">
+      <h3>{{localize "CHARACTER_FORGE.Step.Race"}}</h3>
+      <p class="cf-review-line">
+        {{race.name}}{{#if race.subname}} <span class="cf-muted">({{race.subname}})</span>{{/if}}
+      </p>
+      {{#if race.sourceLabel}}<p class="cf-review-source">{{race.sourceLabel}}</p>{{/if}}
+    </div>
+    {{/if}}
+
+    {{#if classBlock}}
+    <div class="cf-review-section">
+      <h3>{{localize "CHARACTER_FORGE.Step.Class"}}</h3>
+      <p class="cf-review-line">{{classBlock.name}} <span class="cf-muted">({{localize "CHARACTER_FORGE.Review.Level1"}})</span></p>
+      {{#if classBlock.sourceLabel}}<p class="cf-review-source">{{classBlock.sourceLabel}}</p>{{/if}}
+    </div>
+    {{/if}}
+
+    {{#if backgroundBlock}}
+    <div class="cf-review-section">
+      <h3>{{localize "CHARACTER_FORGE.Step.Background"}}</h3>
+      <p class="cf-review-line">{{backgroundBlock.name}}</p>
+      {{#if backgroundBlock.sourceLabel}}<p class="cf-review-source">{{backgroundBlock.sourceLabel}}</p>{{/if}}
+    </div>
+    {{/if}}
+
+    <div class="cf-review-section cf-review-abilities">
+      <h3>{{localize "CHARACTER_FORGE.Step.Abilities"}}</h3>
+      <div class="cf-review-abilities-grid">
+        {{#each abilities}}
+        <div class="cf-review-ability">
+          <span class="cf-review-ab-label">{{this.label}}</span>
+          <span class="cf-review-ab-value">{{this.value}}</span>
+          <span class="cf-review-ab-mod">{{this.modifier}}</span>
+        </div>
+        {{/each}}
+      </div>
+      <p class="cf-muted">{{methodLabel}}</p>
+    </div>
+  </div>
+
+  <p class="cf-review-tip">
+    <i class="fas fa-info-circle"></i>
+    {{localize "CHARACTER_FORGE.Review.AdvancementTip"}}
+  </p>
+</section>

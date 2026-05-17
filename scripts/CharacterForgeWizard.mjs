@@ -14,6 +14,8 @@ import StepRace from "./steps/StepRace.mjs";
 import StepClass from "./steps/StepClass.mjs";
 import StepBackground from "./steps/StepBackground.mjs";
 import StepAbilities from "./steps/StepAbilities.mjs";
+import StepEquipment from "./steps/StepEquipment.mjs";
+import StepReview from "./steps/StepReview.mjs";
 import ActorBuilder from "./builders/ActorBuilder.mjs";
 import CompendiumPackPicker from "./data/CompendiumPackPicker.mjs";
 import {
@@ -66,7 +68,8 @@ function emptyData() {
     spellsPrepared: [],
     spellbook: [],
     // Equipment
-    startingEquipment: [],
+    startingEquipment: [],   // legacy; computed at forge time
+    equipmentChoices: {},    // { choiceId: optionIdx } from StepEquipment
     startingGold: 0,
     // Meta
     _version: 1,
@@ -113,6 +116,7 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "select-subrace": CharacterForgeWizard._onSelectSubrace,
       "select-class": CharacterForgeWizard._onSelectClass,
       "select-background": CharacterForgeWizard._onSelectBackground,
+      "select-equipment-option": CharacterForgeWizard._onSelectEquipmentOption,
       "select-ability-method": CharacterForgeWizard._onSelectAbilityMethod,
       "ability-inc": CharacterForgeWizard._onAbilityInc,
       "ability-dec": CharacterForgeWizard._onAbilityDec,
@@ -145,14 +149,18 @@ export default class CharacterForgeWizard extends ApplicationV2 {
   // ===========================================================================
 
   _registerSteps() {
-    // Additional steps will be pushed here as implemented: StepSkills,
-    // StepSpells, StepEquipment, StepReview.
+    // StepEquipment is conditional (hidden for compendium-sourced classes
+    // because dnd5e's AdvancementManager handles their equipment). StepSkills
+    // and StepSpells are still future work — most users get them via the
+    // dnd5e Advancement Manager that fires when class is embedded.
     this._steps = [
       new StepIdentity(this),
       new StepRace(this),
       new StepClass(this),
       new StepBackground(this),
-      new StepAbilities(this)
+      new StepAbilities(this),
+      new StepEquipment(this),
+      new StepReview(this)
     ];
   }
 
@@ -418,6 +426,21 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     if (!key) return;
     this._captureCurrentStepData();
     this._data.backgroundKey = key;
+    this._saveDraft();
+    this.render();
+  }
+
+  // -------------------- Equipment step --------------------
+
+  static _onSelectEquipmentOption(event, target) {
+    const choiceId = target.dataset.choice;
+    const optionIdx = Number(target.dataset.option);
+    if (!choiceId || !Number.isFinite(optionIdx)) return;
+    this._captureCurrentStepData();
+    if (!this._data.equipmentChoices || typeof this._data.equipmentChoices !== "object") {
+      this._data.equipmentChoices = {};
+    }
+    this._data.equipmentChoices[choiceId] = optionIdx;
     this._saveDraft();
     this.render();
   }

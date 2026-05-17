@@ -1,0 +1,45 @@
+<section class="cf-step" data-step="equipment">
+  <h2>{{localize "CHARACTER_FORGE.Step.Equipment"}}</h2>
+  <p class="cf-step-description">
+    {{localize "CHARACTER_FORGE.Equipment.Desc" class=className}}
+  </p>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Equipment.FromClass"}}</legend>
+    {{#each choices}}
+    <div class="cf-equipment-choice">
+      <div class="cf-equipment-choice-title">{{this.title}}</div>
+      <div class="cf-equipment-options">
+        {{#each this.options}}
+        <button type="button"
+                class="cf-equipment-option{{#if this.selected}} selected{{/if}}"
+                data-action="select-equipment-option"
+                data-choice="{{../id}}"
+                data-option="{{this.idx}}">
+          <div class="cf-equipment-option-label">{{this.label}}</div>
+          {{#if this.itemsLabel}}
+          <div class="cf-equipment-option-items">{{this.itemsLabel}}</div>
+          {{/if}}
+        </button>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </fieldset>
+
+  {{#if hasBgItems}}
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Equipment.FromBackground" background=backgroundName}}</legend>
+    <ul class="cf-equipment-bg-list">
+      {{#each bgItems}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    {{#if hasBgGold}}
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Equipment.PlusGold" gold=bgGold}}</p>
+    {{/if}}
+  </fieldset>
+  {{/if}}
+
+  <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Equipment.Note"}}</p>
+</section>
