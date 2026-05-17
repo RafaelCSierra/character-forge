@@ -114,7 +114,11 @@
       "NoRace": "Por favor, escolha uma raça antes de continuar.",
       "NoSubrace": "Esta raça tem sub-raças — escolha uma antes de continuar.",
       "DraftPending": "Character Forge: há um rascunho salvo. Abra o assistente para retomar.",
-      "ForgeNotReady": "Character Forge: o pipeline de criação ainda está sendo montado. Mais etapas em breve.",
+      "ForgeSuccess": "{name} forjado. Continue atribuindo atributos, classe e equipamento na ficha.",
+      "ForgeError": "Character Forge: algo deu errado ao criar o personagem. Verifique o console do navegador para detalhes.",
+      "DefaultName": "Personagem sem nome",
+      "SubraceMerged": "Traços de sub-raça mesclados: {subrace}.",
+      "SrdRaceNote": "Esta raça foi montada a partir do SRD embarcado do Character Forge. Para aplicação automática de aumentos de atributo / traços, instale o Plutonium ou use os compêndios de raça do sistema dnd5e.",
       "WrongSystem": "Character Forge requer o sistema D&D 5e.",
       "OldSystem": "Character Forge requer D&D 5e {required}+. Versão detectada: {current}. Algumas funcionalidades podem não funcionar.",
       "SrdLoadError": "Character Forge: falha ao carregar o conteúdo SRD embarcado. O assistente não vai funcionar até isso ser corrigido."

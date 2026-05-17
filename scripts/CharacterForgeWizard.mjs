@@ -11,6 +11,7 @@
 import { MODULE_ID, MODULE_PATH, t, log } from "./utils.mjs";
 import StepIdentity from "./steps/StepIdentity.mjs";
 import StepRace from "./steps/StepRace.mjs";
+import ActorBuilder from "./builders/ActorBuilder.mjs";
 
 const { ApplicationV2 } = foundry.applications.api;
 
@@ -365,9 +366,28 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       }
     }
 
-    // v0.1 placeholder: actual Actor.create() lives in ActorBuilder once
-    // additional steps are wired in. For now, log and notify.
+    // Disable the forge button while we work to prevent double-submit.
+    const forgeBtn = this.element?.querySelector('[data-action="forge"]');
+    if (forgeBtn) {
+      forgeBtn.disabled = true;
+      forgeBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${t("CHARACTER_FORGE.Nav.Forging")}`;
+    }
+
     log("Forge requested with data:", this._data);
-    ui.notifications.info(t("CHARACTER_FORGE.Notify.ForgeNotReady"));
+    try {
+      const actor = await ActorBuilder.build(this._data);
+      this._clearDraft();
+      ui.notifications.info(t("CHARACTER_FORGE.Notify.ForgeSuccess", { name: actor.name }));
+      // Open the resulting sheet so the user can verify / continue.
+      actor.sheet?.render(true);
+      this.close();
+    } catch (err) {
+      console.error("Character Forge | Forge failed:", err);
+      ui.notifications.error(t("CHARACTER_FORGE.Notify.ForgeError"));
+      if (forgeBtn) {
+        forgeBtn.disabled = false;
+        forgeBtn.innerHTML = `<i class="fas fa-hammer"></i> ${t("CHARACTER_FORGE.Nav.Forge")}`;
+      }
+    }
   }
 }

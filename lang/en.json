@@ -114,7 +114,11 @@
       "NoRace": "Please choose a race before continuing.",
       "NoSubrace": "This race has subraces — please pick one before continuing.",
       "DraftPending": "Character Forge: a saved draft is available. Open the wizard to resume.",
-      "ForgeNotReady": "Character Forge: creation pipeline is being assembled. More steps coming soon.",
+      "ForgeSuccess": "Forged {name}. Continue to assign abilities, class, and equipment on the sheet.",
+      "ForgeError": "Character Forge: something went wrong while creating the character. Check the browser console for details.",
+      "DefaultName": "Unnamed Character",
+      "SubraceMerged": "Subrace traits merged: {subrace}.",
+      "SrdRaceNote": "This race was built from Character Forge's bundled SRD data. For automatic ASI / trait application, install Plutonium or use the dnd5e system's race compendiums.",
       "WrongSystem": "Character Forge requires the D&D 5e system.",
       "OldSystem": "Character Forge requires D&D 5e {required}+. Detected version: {current}. Some features may not work.",
       "SrdLoadError": "Character Forge: failed to load the bundled SRD data. The wizard will not work until this is fixed."
