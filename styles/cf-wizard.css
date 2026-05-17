@@ -380,6 +380,198 @@
   font-style: italic;
 }
 
+/* =====================================================================
+   Abilities step — method tabs + point-buy / array / roll controls
+   ===================================================================== */
+
+.cf-method-tabs {
+  display: flex;
+  gap: 0;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.cf-wizard .cf-method-tab {
+  all: unset;
+  box-sizing: border-box;
+  flex: 1;
+  text-align: center;
+  padding: 8px 6px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  opacity: 0.6;
+  transition: opacity 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.cf-wizard .cf-method-tab:hover {
+  opacity: 0.9;
+  background: color-mix(in srgb, var(--cf-accent) 8%, transparent);
+}
+
+.cf-wizard .cf-method-tab.active {
+  opacity: 1;
+  font-weight: bold;
+  border-bottom-color: var(--cf-accent);
+}
+
+.cf-abilities-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cf-points-budget {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--cf-accent) 12%, transparent);
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+.cf-points-budget strong {
+  color: var(--cf-accent-light);
+  font-size: 1.1em;
+}
+
+.cf-points-remaining {
+  margin-left: auto;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.cf-ability-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cf-ability-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: color-mix(in srgb, currentColor 3%, transparent);
+  border-radius: 4px;
+}
+
+.cf-ability-label {
+  flex: 0 0 4em;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.04em;
+}
+
+.cf-wizard .cf-ability-btn {
+  all: unset;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--cf-accent) 25%, transparent);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.cf-wizard .cf-ability-btn:hover:not([disabled]) {
+  background: color-mix(in srgb, var(--cf-accent) 45%, transparent);
+}
+
+.cf-wizard .cf-ability-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cf-ability-value {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  min-width: 1.6em;
+}
+
+.cf-ability-mod {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95em;
+  opacity: 0.8;
+  min-width: 2.4em;
+}
+
+.cf-ability-cost {
+  margin-left: auto;
+  font-size: 0.78em;
+  opacity: 0.65;
+  font-style: italic;
+}
+
+.cf-ability-select {
+  flex: 1;
+  min-width: 80px;
+}
+
+/* Standard-array chip strip & roll chip strip */
+.cf-array-pool,
+.cf-roll-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+.cf-array-chip,
+.cf-roll-chip {
+  display: inline-block;
+  min-width: 2.2em;
+  padding: 4px 8px;
+  text-align: center;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+  background: color-mix(in srgb, var(--cf-accent) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cf-accent) 60%, transparent);
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+.cf-roll-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cf-wizard .cf-roll-btn {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--cf-accent);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.15s;
+}
+
+.cf-wizard .cf-roll-btn:hover {
+  background: var(--cf-accent-light);
+}
+
+.cf-wizard .cf-roll-btn[disabled] {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 /* --- Race preview panel --- */
 .cf-race-preview .cf-race-meta-line {
   margin: 2px 0;

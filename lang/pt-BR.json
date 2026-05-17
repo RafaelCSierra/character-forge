@@ -88,11 +88,38 @@
       "ChaoticEvil":    "Caótico e Mau"
     },
     "Abilities": {
+      "Desc": "Escolha como definir seus atributos. Você pode trocar de método a qualquer momento — trocar reinicia seus valores para que nada vaze entre os métodos.",
       "Method": {
-        "PointBuy": "Compra por pontos (27 pontos)",
-        "StandardArray": "Conjunto padrão (15, 14, 13, 12, 10, 8)",
-        "Roll": "Rolagem 4d6, descartar menor"
+        "PointBuy": "Compra por pontos",
+        "StandardArray": "Conjunto padrão",
+        "Roll": "Rolar 4d6"
+      },
+      "PointBuy": {
+        "Title": "Compra por pontos (27 pontos, valores 8–15)",
+        "Help": "Gaste um orçamento de 27 pontos para subir cada atributo a partir de 8. Valores 9–13 custam 1 ponto cada; 14 e 15 custam um ponto extra cada (assim 14 = 7 pts, 15 = 9 pts).",
+        "PointsLabel": "Pontos usados",
+        "Remaining": "restantes",
+        "Cost": "custo"
+      },
+      "StandardArray": {
+        "Title": "Conjunto padrão (15, 14, 13, 12, 10, 8)",
+        "Help": "Atribua cada um dos seis números fixos a um atributo. Cada valor é usado exatamente uma vez."
+      },
+      "Roll": {
+        "Title": "Rolar 4d6, descartar o menor",
+        "Help": "Role quatro dados de seis lados para cada atributo e mantenha os três maiores. Depois atribua os resultados aos atributos que quiser — cada valor rolado é usado exatamente uma vez.",
+        "Action": "Rolar seis vezes",
+        "Reroll": "Rolar de novo",
+        "PromptRoll": "Clique em Rolar para gerar seis valores."
       }
+    },
+    "Ability": {
+      "Str": "FOR",
+      "Dex": "DES",
+      "Con": "CON",
+      "Int": "INT",
+      "Wis": "SAB",
+      "Cha": "CAR"
     },
     "DraftSaved": "Rascunho salvo",
     "ResetConfirmTitle": "Reiniciar assistente?",
@@ -113,6 +140,12 @@
       "NoName": "Por favor, insira um nome para o personagem antes de continuar.",
       "NoRace": "Por favor, escolha uma raça antes de continuar.",
       "NoSubrace": "Esta raça tem sub-raças — escolha uma antes de continuar.",
+      "AbilitiesOverBudget": "O total de pontos excede 27. Reduza alguns valores antes de continuar.",
+      "AbilitiesOutOfRange": "Cada valor de compra por pontos deve ficar entre 8 e 15.",
+      "AbilitiesUnassigned": "Atribua um valor a cada atributo antes de continuar.",
+      "AbilitiesNotStandardArray": "O conjunto padrão exige que 15, 14, 13, 12, 10 e 8 sejam usados exatamente uma vez cada.",
+      "AbilitiesNotRolled": "Clique em Rolar para gerar seis valores, então atribua-os aos seus atributos.",
+      "AbilitiesAssignmentMismatch": "Cada valor rolado deve ser atribuído a exatamente um atributo.",
       "DraftPending": "Character Forge: há um rascunho salvo. Abra o assistente para retomar.",
       "ForgeSuccess": "{name} forjado. Continue atribuindo atributos, classe e equipamento na ficha.",
       "ForgeError": "Character Forge: algo deu errado ao criar o personagem. Verifique o console do navegador para detalhes.",

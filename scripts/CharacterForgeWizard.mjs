@@ -11,7 +11,19 @@
 import { MODULE_ID, MODULE_PATH, t, log } from "./utils.mjs";
 import StepIdentity from "./steps/StepIdentity.mjs";
 import StepRace from "./steps/StepRace.mjs";
+import StepAbilities from "./steps/StepAbilities.mjs";
 import ActorBuilder from "./builders/ActorBuilder.mjs";
+import {
+  ABILITY_KEYS,
+  POINT_BUY_MIN,
+  POINT_BUY_MAX,
+  POINT_BUY_BUDGET,
+  pointBuyCost,
+  pointBuyTotal,
+  defaultPointBuyScores,
+  emptyScores,
+  rollSix
+} from "./builders/AbilityScoreCalculator.mjs";
 
 const { ApplicationV2 } = foundry.applications.api;
 
@@ -87,7 +99,11 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "forge": CharacterForgeWizard._onForge,
       "clear": CharacterForgeWizard._onClear,
       "select-race": CharacterForgeWizard._onSelectRace,
-      "select-subrace": CharacterForgeWizard._onSelectSubrace
+      "select-subrace": CharacterForgeWizard._onSelectSubrace,
+      "select-ability-method": CharacterForgeWizard._onSelectAbilityMethod,
+      "ability-inc": CharacterForgeWizard._onAbilityInc,
+      "ability-dec": CharacterForgeWizard._onAbilityDec,
+      "ability-roll": CharacterForgeWizard._onAbilityRoll
     }
   };
 
@@ -105,11 +121,11 @@ export default class CharacterForgeWizard extends ApplicationV2 {
 
   _registerSteps() {
     // Additional steps will be pushed here as implemented: StepClass,
-    // StepBackground, StepAbilities, StepSkills, StepSpells, StepEquipment,
-    // StepReview.
+    // StepBackground, StepSkills, StepSpells, StepEquipment, StepReview.
     this._steps = [
       new StepIdentity(this),
-      new StepRace(this)
+      new StepRace(this),
+      new StepAbilities(this)
     ];
   }
 
@@ -353,6 +369,65 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     this._data.subraceKey = key;
     this._saveDraft();
     this.render();
+  }
+
+  // -------------------- Abilities step --------------------
+
+  static _onSelectAbilityMethod(event, target) {
+    const method = target.dataset.method;
+    if (!method) return;
+    this._captureCurrentStepData();
+    this._data.abilityMethod = method;
+    // Reset scores so a half-finished assignment from one method doesn't
+    // leak into another. Point-buy starts at the 8-across-the-board floor;
+    // the others start unassigned.
+    if (method === "point-buy") {
+      this._data.baseScores = defaultPointBuyScores();
+    } else {
+      this._data.baseScores = emptyScores();
+    }
+    this._data.rolledArray = [];
+    this._saveDraft();
+    this.render();
+  }
+
+  static _onAbilityInc(event, target) {
+    const ab = target.dataset.ability;
+    if (!ab) return;
+    const cur = this._data.baseScores?.[ab] ?? POINT_BUY_MIN;
+    if (cur >= POINT_BUY_MAX) return;
+    const next = cur + 1;
+    const proposed = { ...this._data.baseScores, [ab]: next };
+    if (pointBuyTotal(proposed) > POINT_BUY_BUDGET) return;
+    this._data.baseScores[ab] = next;
+    this._saveDraft();
+    this.render();
+  }
+
+  static _onAbilityDec(event, target) {
+    const ab = target.dataset.ability;
+    if (!ab) return;
+    const cur = this._data.baseScores?.[ab] ?? POINT_BUY_MIN;
+    if (cur <= POINT_BUY_MIN) return;
+    this._data.baseScores[ab] = cur - 1;
+    this._saveDraft();
+    this.render();
+  }
+
+  static async _onAbilityRoll(event, target) {
+    const btn = target;
+    if (btn) btn.disabled = true;
+    try {
+      const rolled = await rollSix();
+      this._data.rolledArray = rolled;
+      // Clear assignments so the user re-picks against the new dice.
+      this._data.baseScores = emptyScores();
+      this._saveDraft();
+      this.render();
+    } catch (err) {
+      console.error("Character Forge | Roll failed:", err);
+      if (btn) btn.disabled = false;
+    }
   }
 
   static async _onForge(event, target) {

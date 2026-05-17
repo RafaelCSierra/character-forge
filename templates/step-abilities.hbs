@@ -1,0 +1,105 @@
+<section class="cf-step" data-step="abilities">
+  <h2>{{localize "CHARACTER_FORGE.Step.Abilities"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Abilities.Desc"}}</p>
+
+  <div class="cf-method-tabs">
+    {{#each methodOptions}}
+    <button type="button"
+            class="cf-method-tab{{#if this.active}} active{{/if}}"
+            data-action="select-ability-method"
+            data-method="{{this.key}}">
+      {{localize this.labelKey}}
+    </button>
+    {{/each}}
+  </div>
+
+  {{#if isPointBuy}}
+  <fieldset class="cf-fieldset cf-abilities-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Abilities.PointBuy.Title"}}</legend>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Abilities.PointBuy.Help"}}</p>
+    <div class="cf-points-budget">
+      <span>{{localize "CHARACTER_FORGE.Abilities.PointBuy.PointsLabel"}}:</span>
+      <strong>{{pointsUsed}} / {{pointsBudget}}</strong>
+      <span class="cf-points-remaining">({{localize "CHARACTER_FORGE.Abilities.PointBuy.Remaining"}}: {{pointsRemaining}})</span>
+    </div>
+    <div class="cf-ability-rows">
+      {{#each pointBuyRows}}
+      <div class="cf-ability-row">
+        <span class="cf-ability-label">{{this.label}}</span>
+        <button type="button" class="cf-ability-btn"
+                data-action="ability-dec" data-ability="{{this.key}}"
+                {{#unless this.canDec}}disabled{{/unless}}>−</button>
+        <span class="cf-ability-value">{{this.value}}</span>
+        <button type="button" class="cf-ability-btn"
+                data-action="ability-inc" data-ability="{{this.key}}"
+                {{#unless this.canInc}}disabled{{/unless}}>+</button>
+        <span class="cf-ability-mod">({{this.modifier}})</span>
+        <span class="cf-ability-cost">{{localize "CHARACTER_FORGE.Abilities.PointBuy.Cost"}}: {{this.cost}}</span>
+      </div>
+      {{/each}}
+    </div>
+  </fieldset>
+  {{/if}}
+
+  {{#if isStandardArray}}
+  <fieldset class="cf-fieldset cf-abilities-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Abilities.StandardArray.Title"}}</legend>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Abilities.StandardArray.Help"}}</p>
+    <div class="cf-array-pool">
+      {{#each arrayValues}}
+      <span class="cf-array-chip">{{this}}</span>
+      {{/each}}
+    </div>
+    <div class="cf-ability-rows">
+      {{#each arrayRows}}
+      <div class="cf-ability-row">
+        <span class="cf-ability-label">{{this.label}}</span>
+        <select name="ability-{{this.key}}" class="cf-ability-select">
+          <option value="" {{#unless this.value}}selected{{/unless}}>—</option>
+          {{#each this.options}}
+          <option value="{{this.value}}" {{#if this.selected}}selected{{/if}} {{#if this.disabled}}disabled{{/if}}>{{this.value}}</option>
+          {{/each}}
+        </select>
+        <span class="cf-ability-mod">{{this.modifier}}</span>
+      </div>
+      {{/each}}
+    </div>
+  </fieldset>
+  {{/if}}
+
+  {{#if isRoll}}
+  <fieldset class="cf-fieldset cf-abilities-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Abilities.Roll.Title"}}</legend>
+    <p class="cf-help">{{localize "CHARACTER_FORGE.Abilities.Roll.Help"}}</p>
+    <div class="cf-roll-bar">
+      <button type="button" class="cf-roll-btn" data-action="ability-roll">
+        <i class="fas fa-dice-d20"></i>
+        {{#if hasRolled}}{{localize "CHARACTER_FORGE.Abilities.Roll.Reroll"}}{{else}}{{localize "CHARACTER_FORGE.Abilities.Roll.Action"}}{{/if}}
+      </button>
+      {{#if hasRolled}}
+      <div class="cf-roll-chips">
+        {{#each rolledArray}}<span class="cf-roll-chip">{{this}}</span>{{/each}}
+      </div>
+      {{/if}}
+    </div>
+    {{#if hasRolled}}
+    <div class="cf-ability-rows">
+      {{#each rollRows}}
+      <div class="cf-ability-row">
+        <span class="cf-ability-label">{{this.label}}</span>
+        <select name="ability-{{this.key}}" class="cf-ability-select">
+          <option value="" {{#unless this.value}}selected{{/unless}}>—</option>
+          {{#each this.options}}
+          <option value="{{this.value}}" {{#if this.selected}}selected{{/if}} {{#if this.disabled}}disabled{{/if}}>{{this.value}}</option>
+          {{/each}}
+        </select>
+        <span class="cf-ability-mod">{{this.modifier}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <p class="cf-step-empty">{{localize "CHARACTER_FORGE.Abilities.Roll.PromptRoll"}}</p>
+    {{/if}}
+  </fieldset>
+  {{/if}}
+</section>

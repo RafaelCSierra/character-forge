@@ -18,6 +18,7 @@
 
 import DataRegistry from "../data/DataRegistry.mjs";
 import { t, log, warn } from "../utils.mjs";
+import { ABILITY_KEYS } from "./AbilityScoreCalculator.mjs";
 
 /** "lawful-good" → "Lawful Good"  (matches dnd5e alignment display style). */
 function formatAlignment(key) {
@@ -26,6 +27,19 @@ function formatAlignment(key) {
     .split("-")
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
+}
+
+/** Map base ability scores from wizard state to the dnd5e abilities sub-tree.
+ *  Unset / zero values fall back to 10 (the system default) so the sheet
+ *  doesn't show 0s if the user skipped this step. */
+function buildAbilitiesPayload(baseScores) {
+  const out = {};
+  for (const k of ABILITY_KEYS) {
+    const v = baseScores?.[k];
+    const value = Number.isFinite(v) && v > 0 ? v : 10;
+    out[k] = { value };
+  }
+  return out;
 }
 
 /** Build a minimal dnd5e race Item from a bundled-SRD entry. */
@@ -71,7 +85,8 @@ const ActorBuilder = {
       system: {
         details: {
           alignment: formatAlignment(data.alignment)
-        }
+        },
+        abilities: buildAbilitiesPayload(data.baseScores)
       }
     };
 

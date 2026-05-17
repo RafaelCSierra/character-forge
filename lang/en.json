@@ -88,11 +88,38 @@
       "ChaoticEvil":    "Chaotic Evil"
     },
     "Abilities": {
+      "Desc": "Choose how to set your ability scores. You can swap methods at any time — switching resets your scores so nothing leaks between methods.",
       "Method": {
-        "PointBuy": "Point-buy (27 points)",
-        "StandardArray": "Standard array (15, 14, 13, 12, 10, 8)",
-        "Roll": "Roll 4d6, drop lowest"
+        "PointBuy": "Point-buy",
+        "StandardArray": "Standard array",
+        "Roll": "Roll 4d6"
+      },
+      "PointBuy": {
+        "Title": "Point-buy (27 points, scores 8–15)",
+        "Help": "Spend a budget of 27 points to raise each ability from 8. Scores 9–13 cost 1 point each; 14 and 15 cost an extra point each (so 14 = 7 pts, 15 = 9 pts).",
+        "PointsLabel": "Points used",
+        "Remaining": "remaining",
+        "Cost": "cost"
+      },
+      "StandardArray": {
+        "Title": "Standard array (15, 14, 13, 12, 10, 8)",
+        "Help": "Assign each of the six fixed numbers to one ability. Every value is used exactly once."
+      },
+      "Roll": {
+        "Title": "Roll 4d6, drop lowest",
+        "Help": "Roll four six-sided dice for each ability and keep the highest three. Then drag the results into the abilities of your choice — each rolled value is used exactly once.",
+        "Action": "Roll six times",
+        "Reroll": "Re-roll",
+        "PromptRoll": "Click Roll to generate six values."
       }
+    },
+    "Ability": {
+      "Str": "STR",
+      "Dex": "DEX",
+      "Con": "CON",
+      "Int": "INT",
+      "Wis": "WIS",
+      "Cha": "CHA"
     },
     "DraftSaved": "Draft saved",
     "ResetConfirmTitle": "Reset wizard?",
@@ -113,6 +140,12 @@
       "NoName": "Please enter a character name before continuing.",
       "NoRace": "Please choose a race before continuing.",
       "NoSubrace": "This race has subraces — please pick one before continuing.",
+      "AbilitiesOverBudget": "Point-buy total exceeds 27 points. Lower some scores before continuing.",
+      "AbilitiesOutOfRange": "Each point-buy score must be between 8 and 15.",
+      "AbilitiesUnassigned": "Assign a value to every ability before continuing.",
+      "AbilitiesNotStandardArray": "Standard array requires each of 15, 14, 13, 12, 10, and 8 to be used exactly once.",
+      "AbilitiesNotRolled": "Click Roll to generate six values, then assign them to your abilities.",
+      "AbilitiesAssignmentMismatch": "Each rolled value must be assigned to exactly one ability.",
       "DraftPending": "Character Forge: a saved draft is available. Open the wizard to resume.",
       "ForgeSuccess": "Forged {name}. Continue to assign abilities, class, and equipment on the sheet.",
       "ForgeError": "Character Forge: something went wrong while creating the character. Check the browser console for details.",
