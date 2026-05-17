@@ -7,6 +7,7 @@ import { MODULE_ID, MODULE_PATH, t, log, warn, checkSystemCompatibility } from "
 import CharacterForgeWizard from "./CharacterForgeWizard.mjs";
 import SrdLoader from "./data/SrdLoader.mjs";
 import CompendiumScanner from "./data/CompendiumScanner.mjs";
+import { attachLevelUpButton, openLevelUpWizard } from "./levelup/LevelUpButton.mjs";
 
 // =============================================================================
 // Singletons
@@ -171,6 +172,17 @@ Hooks.once("ready", async () => {
 // Sidebar button — Actor Directory
 // =============================================================================
 
+// =============================================================================
+// Level-up button — injected into every character sheet
+// =============================================================================
+
+// We cover both render hook variants:
+//   - "renderActorSheet" fires for V1 sheets (legacy or other modules)
+//   - "renderActorSheet5eCharacter2" fires for the dnd5e v5+ V2 sheet
+// attachLevelUpButton is idempotent so getting the hook twice is harmless.
+Hooks.on("renderActorSheet", (app, html) => attachLevelUpButton(app, html));
+Hooks.on("renderActorSheet5eCharacter2", (app, html) => attachLevelUpButton(app, html));
+
 Hooks.on("renderActorDirectory", (app, html) => {
   const root = html instanceof HTMLElement ? html : html?.[0];
   if (!root) return;
@@ -200,6 +212,7 @@ Hooks.once("ready", () => {
   const mod = game.modules.get(MODULE_ID);
   if (!mod) return;
   mod.api = {
-    openCreationWizard
+    openCreationWizard,
+    openLevelUpWizard
   };
 });

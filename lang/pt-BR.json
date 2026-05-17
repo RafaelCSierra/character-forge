@@ -59,6 +59,30 @@
         "spell": "magias"
       }
     },
+    "LevelUp": {
+      "Title": "Subir de Nível",
+      "ButtonHint": "Subir de nível este personagem via Character Forge",
+      "Help": "Escolha um caminho. Ou aumente o nível de uma classe que você já tem, ou pegue um nível 1 numa nova classe (multiclasse).",
+      "TotalLevel": "Nível atual do personagem: {n}",
+      "ContinueTitle": "Continuar uma classe atual",
+      "CurrentLevel": "Nível {n} agora",
+      "NextLevel": "Nível {n}",
+      "Arrow": "→",
+      "MulticlassTitle": "Multiclasse — nova classe",
+      "MulticlassHelp": "As regras de multiclasse do PHB 2014 exigem que você atenda a um pré-requisito de atributo tanto na classe atual quanto na nova. Cards que não atendem ao pré-requisito ficam mais apagados mas ainda são selecionáveis — sua mesa pode optar por ignorar a regra.",
+      "PrereqShort": "Pré-req",
+      "PrereqMet": "Pré-requisito atendido: {hint}",
+      "PrereqUnmet": "Pré-requisito não atendido: {hint}",
+      "NoMulticlassOptions": "Sem outras classes disponíveis — multiclasse desabilitado nas configurações, ou você já tem nível em todas as classes registradas.",
+      "SummaryExisting": "Subir {name}: N{from} → N{to}",
+      "SummaryNew": "Pegar nível 1 em {name}",
+      "NoSelection": "Escolha uma classe acima para continuar.",
+      "Confirm": "Continuar",
+      "Cancel": "Cancelar",
+      "Working": "Trabalhando…",
+      "Triggered": "Advancement Manager aberto — faça suas escolhas para concluir a subida de nível.",
+      "Error": "Falha ao subir de nível. Verifique o console do navegador para detalhes."
+    },
     "Equipment": {
       "Desc": "Escolha seu equipamento inicial entre as opções oferecidas pela classe {class}. Itens do antecedente e ouro inicial são adicionados automaticamente.",
       "FromClass": "Da sua classe",

@@ -59,6 +59,30 @@
         "spell": "spells"
       }
     },
+    "LevelUp": {
+      "Title": "Level Up",
+      "ButtonHint": "Level up this character via Character Forge",
+      "Help": "Pick a path. Either raise the level of a class you already have, or take a level 1 dip into a new class (multiclass).",
+      "TotalLevel": "Current character level: {n}",
+      "ContinueTitle": "Continue a current class",
+      "CurrentLevel": "Currently Level {n}",
+      "NextLevel": "Level {n}",
+      "Arrow": "→",
+      "MulticlassTitle": "Multiclass into a new class",
+      "MulticlassHelp": "PHB 2014 multiclass rules require you to meet an ability-score prerequisite for both your current class and the new one. Cards that don't meet the prereq are dimmed but still selectable — your table can choose to ignore the rule.",
+      "PrereqShort": "Prereq",
+      "PrereqMet": "Prerequisite met: {hint}",
+      "PrereqUnmet": "Prerequisite not met: {hint}",
+      "NoMulticlassOptions": "No other classes available — multiclass is disabled in settings, or you already have a level in every registered class.",
+      "SummaryExisting": "Level up {name}: L{from} → L{to}",
+      "SummaryNew": "Take a Level 1 dip in {name}",
+      "NoSelection": "Pick a class above to continue.",
+      "Confirm": "Continue",
+      "Cancel": "Cancel",
+      "Working": "Working…",
+      "Triggered": "Advancement Manager opened — make your choices to finish leveling up.",
+      "Error": "Level-up failed. Check the browser console for details."
+    },
     "Equipment": {
       "Desc": "Pick your starting equipment from the options offered by the {class} class. Background items and starting gold are added automatically.",
       "FromClass": "From your class",

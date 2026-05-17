@@ -1063,6 +1063,110 @@
   margin-right: 6px;
 }
 
+/* =====================================================================
+   Level-up button on actor sheet header + ClassPicker dialog
+   ===================================================================== */
+
+.window-header .cf-levelup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 24px;
+  margin: 0 2px;
+  cursor: pointer;
+  opacity: 0.8;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.window-header .cf-levelup-btn:hover {
+  opacity: 1;
+  color: var(--cf-accent-light, #f0a86b);
+}
+
+.window-header .cf-levelup-btn i {
+  font-size: 0.95em;
+}
+
+/* ClassPicker dialog */
+.cf-class-picker {
+  min-width: 540px;
+}
+
+.cf-class-picker .window-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cf-class-picker-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  padding: 12px 16px 0 16px;
+  gap: 4px;
+}
+
+.cf-class-picker-intro {
+  margin-bottom: 6px;
+}
+
+.cf-class-picker-body fieldset {
+  flex-shrink: 0;
+}
+
+.cf-class-picker-body fieldset:nth-of-type(2) {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cf-wizard .cf-class-card-warn {
+  opacity: 0.65;
+}
+
+.cf-wizard .cf-class-card-warn .cf-class-card-stats {
+  color: color-mix(in srgb, var(--cf-danger, #e74c3c) 75%, currentColor);
+}
+
+.cf-levelup-next {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed color-mix(in srgb, currentColor 18%, transparent);
+  font-size: 0.85em;
+  font-weight: bold;
+  color: var(--cf-accent-light);
+  text-align: center;
+}
+
+.cf-class-picker-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-top: auto;
+  background: rgba(0, 0, 0, 0.1);
+  border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+
+.cf-class-picker-summary {
+  flex: 1;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.cf-class-picker-footer button {
+  padding: 6px 14px;
+}
+
+.cf-class-picker-footer .cf-forge-btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* --- Race preview panel --- */
 .cf-race-preview .cf-race-meta-line {
   margin: 2px 0;
