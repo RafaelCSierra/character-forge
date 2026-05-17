@@ -1,0 +1,60 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "sorcerer",
+  "name": "Sorcerer",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Sorcerer",
+  "hitDie": 6,
+  "primaryAbility": ["cha"],
+  "savingThrows": ["con", "cha"],
+  "armorProficiencies": [],
+  "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["arc", "dec", "ins", "itm", "per", "rel"]
+  },
+  "subclassLevel": 1,
+  "subclasses": [
+    {
+      "key": "draconic",
+      "name": "Draconic Bloodline",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Draconic",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "cha",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Light crossbow + 20 bolts", "items": [{ "key": "light-crossbow", "qty": 1 }, { "key": "crossbow-bolt", "qty": 20 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "quarterstaff", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "focus",
+        "options": [
+          { "label": "Component pouch", "items": [{ "key": "component-pouch", "qty": 1 }] },
+          { "label": "Arcane focus", "items": [{ "key": "arcane-focus", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Dungeoneer's pack", "items": [{ "key": "dungeoneers-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "dagger", "qty": 2 }
+    ]
+  },
+  "startingWealth": "3d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["spellcasting", "sorcerous-origin"] }
+  ],
+  "source": "SRD-5.1"
+}

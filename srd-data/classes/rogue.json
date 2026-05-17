@@ -1,0 +1,63 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "rogue",
+  "name": "Rogue",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Rogue",
+  "hitDie": 8,
+  "primaryAbility": ["dex"],
+  "savingThrows": ["dex", "int"],
+  "armorProficiencies": ["light"],
+  "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
+  "toolProficiencies": ["thieves-tools"],
+  "skillProficiencies": {
+    "choose": 4,
+    "from": ["acr", "ath", "dec", "ins", "itm", "inv", "prc", "prf", "per", "slt", "ste"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "thief",
+      "name": "Thief",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Thief",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": null,
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Rapier", "items": [{ "key": "rapier", "qty": 1 }] },
+          { "label": "Shortsword", "items": [{ "key": "shortsword", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "ranged",
+        "options": [
+          { "label": "Shortbow + 20 arrows", "items": [{ "key": "shortbow", "qty": 1 }, { "key": "arrow", "qty": 20 }] },
+          { "label": "Shortsword", "items": [{ "key": "shortsword", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Burglar's pack", "items": [{ "key": "burglars-pack", "qty": 1 }] },
+          { "label": "Dungeoneer's pack", "items": [{ "key": "dungeoneers-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "leather-armor", "qty": 1 },
+      { "key": "dagger", "qty": 2 },
+      { "key": "thieves-tools", "qty": 1 }
+    ]
+  },
+  "startingWealth": "4d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["expertise", "sneak-attack", "thieves-cant"] }
+  ],
+  "source": "SRD-5.1"
+}

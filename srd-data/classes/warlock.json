@@ -1,0 +1,61 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "warlock",
+  "name": "Warlock",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Warlock",
+  "hitDie": 8,
+  "primaryAbility": ["cha"],
+  "savingThrows": ["wis", "cha"],
+  "armorProficiencies": ["light"],
+  "weaponProficiencies": ["simple"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["arc", "dec", "his", "itm", "inv", "nat", "rel"]
+  },
+  "subclassLevel": 1,
+  "subclasses": [
+    {
+      "key": "fiend",
+      "name": "The Fiend",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Fiend",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "cha",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Light crossbow + 20 bolts", "items": [{ "key": "light-crossbow", "qty": 1 }, { "key": "crossbow-bolt", "qty": 20 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "dagger", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "focus",
+        "options": [
+          { "label": "Component pouch", "items": [{ "key": "component-pouch", "qty": 1 }] },
+          { "label": "Arcane focus", "items": [{ "key": "arcane-focus", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Scholar's pack", "items": [{ "key": "scholars-pack", "qty": 1 }] },
+          { "label": "Dungeoneer's pack", "items": [{ "key": "dungeoneers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "leather-armor", "qty": 1 },
+      { "key": "dagger", "qty": 2 }
+    ]
+  },
+  "startingWealth": "4d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["otherworldly-patron", "pact-magic"] }
+  ],
+  "source": "SRD-5.1"
+}

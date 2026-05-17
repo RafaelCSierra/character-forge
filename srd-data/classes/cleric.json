@@ -1,0 +1,69 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "cleric",
+  "name": "Cleric",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Cleric",
+  "hitDie": 8,
+  "primaryAbility": ["wis"],
+  "savingThrows": ["wis", "cha"],
+  "armorProficiencies": ["light", "medium", "shields"],
+  "weaponProficiencies": ["simple"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["his", "ins", "med", "per", "rel"]
+  },
+  "subclassLevel": 1,
+  "subclasses": [
+    {
+      "key": "life-domain",
+      "name": "Life Domain",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.LifeDomain",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "wis",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Mace", "items": [{ "key": "mace", "qty": 1 }] },
+          { "label": "Warhammer (if proficient)", "items": [{ "key": "warhammer", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "armor",
+        "options": [
+          { "label": "Scale mail", "items": [{ "key": "scale-mail", "qty": 1 }] },
+          { "label": "Leather armor", "items": [{ "key": "leather-armor", "qty": 1 }] },
+          { "label": "Chain mail (if proficient)", "items": [{ "key": "chain-mail", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "secondary-weapon",
+        "options": [
+          { "label": "Light crossbow + 20 bolts", "items": [{ "key": "light-crossbow", "qty": 1 }, { "key": "crossbow-bolt", "qty": 20 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "dagger", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Priest's pack", "items": [{ "key": "priests-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "shield", "qty": 1 },
+      { "key": "holy-symbol", "qty": 1 }
+    ]
+  },
+  "startingWealth": "5d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["spellcasting", "divine-domain"] }
+  ],
+  "source": "SRD-5.1"
+}

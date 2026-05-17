@@ -287,16 +287,32 @@
         "Tiefling":           { "name": "Tiefling" }
       },
       "Class": {
-        "Fighter": {
-          "name": "Fighter",
-          "desc": "A master of martial combat, skilled with a variety of weapons and armor."
-        }
+        "Barbarian": { "name": "Barbarian", "desc": "A fierce warrior of primitive background who can enter a battle rage." },
+        "Bard":      { "name": "Bard",      "desc": "An inspiring magician whose power echoes the music of creation." },
+        "Cleric":    { "name": "Cleric",    "desc": "A priestly champion who wields divine magic in service of a higher power." },
+        "Druid":     { "name": "Druid",     "desc": "A priest of the Old Faith, wielding the powers of nature." },
+        "Fighter":   { "name": "Fighter",   "desc": "A master of martial combat, skilled with a variety of weapons and armor." },
+        "Monk":      { "name": "Monk",      "desc": "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection." },
+        "Paladin":   { "name": "Paladin",   "desc": "A holy warrior bound to a sacred oath." },
+        "Ranger":    { "name": "Ranger",    "desc": "A warrior who combats threats on the edges of civilization." },
+        "Rogue":     { "name": "Rogue",     "desc": "A scoundrel who uses stealth and trickery to overcome obstacles." },
+        "Sorcerer":  { "name": "Sorcerer",  "desc": "A spellcaster who draws on inherent magic from a gift or bloodline." },
+        "Warlock":   { "name": "Warlock",   "desc": "A wielder of magic that is derived from a bargain with an extraplanar entity." },
+        "Wizard":    { "name": "Wizard",    "desc": "A scholarly magic-user capable of manipulating the structures of reality." }
       },
       "Subclass": {
-        "Champion": {
-          "name": "Champion",
-          "desc": "Focused on the physical perfection of body and weapon mastery."
-        }
+        "Berserker":       { "name": "Path of the Berserker",       "desc": "Frenzied combat at the cost of personal exhaustion." },
+        "Lore":            { "name": "College of Lore",              "desc": "Bards who collect spells and secrets from far and wide." },
+        "LifeDomain":      { "name": "Life Domain",                  "desc": "The vitality that sustains all living things." },
+        "CircleOfTheLand": { "name": "Circle of the Land",           "desc": "Druids who meet within sacred circles to trade knowledge." },
+        "Champion":        { "name": "Champion",                     "desc": "Focused on the physical perfection of body and weapon mastery." },
+        "OpenHand":        { "name": "Way of the Open Hand",         "desc": "Monks who specialize in unarmed combat." },
+        "Devotion":        { "name": "Oath of Devotion",             "desc": "The paladin's commitment to the highest ideals of justice, virtue, and order." },
+        "Hunter":          { "name": "Hunter",                       "desc": "Rangers who stalk monstrous threats." },
+        "Thief":           { "name": "Thief",                        "desc": "Stealthy rogues who specialize in sleight of hand and second-story work." },
+        "Draconic":        { "name": "Draconic Bloodline",           "desc": "Sorcerers whose innate magic comes from draconic ancestry." },
+        "Fiend":           { "name": "The Fiend",                    "desc": "A warlock who has made a pact with a fiend from the lower planes." },
+        "Evocation":       { "name": "School of Evocation",          "desc": "Wizards who specialize in spells that create powerful elemental effects." }
       },
       "Background": {
         "Acolyte":   { "name": "Acolyte",     "desc": "You have spent your life in the service of a temple to a specific god or pantheon of gods." },

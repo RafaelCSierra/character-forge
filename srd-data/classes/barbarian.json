@@ -1,0 +1,54 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "barbarian",
+  "name": "Barbarian",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Barbarian",
+  "hitDie": 12,
+  "primaryAbility": ["str"],
+  "savingThrows": ["str", "con"],
+  "armorProficiencies": ["light", "medium", "shields"],
+  "weaponProficiencies": ["simple", "martial"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["ani", "ath", "itm", "nat", "prc", "sur"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "berserker",
+      "name": "Path of the Berserker",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Berserker",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": null,
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Greataxe", "items": [{ "key": "greataxe", "qty": 1 }] },
+          { "label": "Any martial melee weapon", "items": [{ "key": "longsword", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "secondary-weapon",
+        "options": [
+          { "label": "Two handaxes", "items": [{ "key": "handaxe", "qty": 2 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "club", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "explorers-pack", "qty": 1 },
+      { "key": "javelin", "qty": 4 }
+    ]
+  },
+  "startingWealth": "2d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["rage", "unarmored-defense"] }
+  ],
+  "source": "SRD-5.1"
+}

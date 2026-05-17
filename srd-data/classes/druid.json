@@ -1,0 +1,55 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "druid",
+  "name": "Druid",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Druid",
+  "hitDie": 8,
+  "primaryAbility": ["wis"],
+  "savingThrows": ["int", "wis"],
+  "armorProficiencies": ["light-nonmetal", "medium-nonmetal", "shields-nonmetal"],
+  "weaponProficiencies": ["club", "dagger", "dart", "javelin", "mace", "quarterstaff", "scimitar", "sickle", "sling", "spear"],
+  "toolProficiencies": ["herbalism-kit"],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["arc", "ani", "ins", "med", "nat", "per", "rel", "sur"]
+  },
+  "subclassLevel": 2,
+  "subclasses": [
+    {
+      "key": "land",
+      "name": "Circle of the Land",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.CircleOfTheLand",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "wis",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Wooden shield", "items": [{ "key": "shield", "qty": 1 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "quarterstaff", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "secondary-weapon",
+        "options": [
+          { "label": "Scimitar", "items": [{ "key": "scimitar", "qty": 1 }] },
+          { "label": "Any simple melee weapon", "items": [{ "key": "club", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "leather-armor", "qty": 1 },
+      { "key": "explorers-pack", "qty": 1 },
+      { "key": "druidic-focus", "qty": 1 }
+    ]
+  },
+  "startingWealth": "2d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["druidic", "spellcasting"] }
+  ],
+  "source": "SRD-5.1"
+}

@@ -1,0 +1,62 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "bard",
+  "name": "Bard",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Bard",
+  "hitDie": 8,
+  "primaryAbility": ["cha"],
+  "savingThrows": ["dex", "cha"],
+  "armorProficiencies": ["light"],
+  "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
+  "toolProficiencies": ["musical-instrument:3"],
+  "skillProficiencies": {
+    "choose": 3,
+    "from": ["acr", "ani", "arc", "ath", "dec", "his", "ins", "itm", "inv", "med", "nat", "prc", "prf", "per", "rel", "slt", "ste", "sur"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "lore",
+      "name": "College of Lore",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Lore",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "cha",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Rapier", "items": [{ "key": "rapier", "qty": 1 }] },
+          { "label": "Longsword", "items": [{ "key": "longsword", "qty": 1 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "dagger", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Diplomat's pack", "items": [{ "key": "diplomats-pack", "qty": 1 }] },
+          { "label": "Entertainer's pack", "items": [{ "key": "entertainers-pack", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "instrument",
+        "options": [
+          { "label": "Lute", "items": [{ "key": "lute", "qty": 1 }] },
+          { "label": "Any other musical instrument", "items": [{ "key": "flute", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "leather-armor", "qty": 1 },
+      { "key": "dagger", "qty": 1 }
+    ]
+  },
+  "startingWealth": "5d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["spellcasting", "bardic-inspiration"] }
+  ],
+  "source": "SRD-5.1"
+}

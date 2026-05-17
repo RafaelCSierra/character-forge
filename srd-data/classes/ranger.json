@@ -1,0 +1,61 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "ranger",
+  "name": "Ranger",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Ranger",
+  "hitDie": 10,
+  "primaryAbility": ["dex", "wis"],
+  "savingThrows": ["str", "dex"],
+  "armorProficiencies": ["light", "medium", "shields"],
+  "weaponProficiencies": ["simple", "martial"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 3,
+    "from": ["ani", "ath", "ins", "inv", "nat", "prc", "ste", "sur"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "hunter",
+      "name": "Hunter",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Hunter",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "wis",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "armor",
+        "options": [
+          { "label": "Scale mail", "items": [{ "key": "scale-mail", "qty": 1 }] },
+          { "label": "Leather armor", "items": [{ "key": "leather-armor", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Two shortswords", "items": [{ "key": "shortsword", "qty": 2 }] },
+          { "label": "Two simple melee weapons", "items": [{ "key": "handaxe", "qty": 2 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Dungeoneer's pack", "items": [{ "key": "dungeoneers-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "longbow", "qty": 1 },
+      { "key": "arrow", "qty": 20 }
+    ]
+  },
+  "startingWealth": "5d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["favored-enemy", "natural-explorer"] }
+  ],
+  "source": "SRD-5.1"
+}

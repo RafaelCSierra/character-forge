@@ -1,0 +1,53 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "monk",
+  "name": "Monk",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Monk",
+  "hitDie": 8,
+  "primaryAbility": ["dex", "wis"],
+  "savingThrows": ["str", "dex"],
+  "armorProficiencies": [],
+  "weaponProficiencies": ["simple", "shortsword"],
+  "toolProficiencies": ["artisans-tools:any", "musical-instrument:any"],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["acr", "ath", "his", "ins", "rel", "ste"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "open-hand",
+      "name": "Way of the Open Hand",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.OpenHand",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": null,
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Shortsword", "items": [{ "key": "shortsword", "qty": 1 }] },
+          { "label": "Any simple weapon", "items": [{ "key": "quarterstaff", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Dungeoneer's pack", "items": [{ "key": "dungeoneers-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "dart", "qty": 10 }
+    ]
+  },
+  "startingWealth": "5d4",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["unarmored-defense", "martial-arts"] }
+  ],
+  "source": "SRD-5.1"
+}

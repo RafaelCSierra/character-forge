@@ -287,16 +287,32 @@
         "Tiefling":           { "name": "Tiefling" }
       },
       "Class": {
-        "Fighter": {
-          "name": "Guerreiro",
-          "desc": "Mestre do combate marcial, hábil com uma variedade de armas e armaduras."
-        }
+        "Barbarian": { "name": "Bárbaro",   "desc": "Um guerreiro feroz de origem primitiva que pode entrar em fúria de batalha." },
+        "Bard":      { "name": "Bardo",     "desc": "Um mago inspirador cujo poder ecoa a música da criação." },
+        "Cleric":    { "name": "Clérigo",   "desc": "Um campeão sacerdotal que empunha magia divina a serviço de um poder maior." },
+        "Druid":     { "name": "Druida",    "desc": "Um sacerdote da Velha Fé, empunhando os poderes da natureza." },
+        "Fighter":   { "name": "Guerreiro", "desc": "Mestre do combate marcial, hábil com uma variedade de armas e armaduras." },
+        "Monk":      { "name": "Monge",     "desc": "Mestre das artes marciais, canalizando o poder do corpo em busca de perfeição física e espiritual." },
+        "Paladin":   { "name": "Paladino",  "desc": "Um guerreiro sagrado vinculado a um juramento." },
+        "Ranger":    { "name": "Patrulheiro", "desc": "Um guerreiro que combate ameaças nas fronteiras da civilização." },
+        "Rogue":     { "name": "Ladino",    "desc": "Um malandro que usa furtividade e trapaça para superar obstáculos." },
+        "Sorcerer":  { "name": "Feiticeiro", "desc": "Um conjurador que extrai magia inerente de um dom ou linhagem." },
+        "Warlock":   { "name": "Bruxo",     "desc": "Um manipulador de magia derivada de um pacto com uma entidade extraplanar." },
+        "Wizard":    { "name": "Mago",      "desc": "Um usuário de magia erudito capaz de manipular as estruturas da realidade." }
       },
       "Subclass": {
-        "Champion": {
-          "name": "Campeão",
-          "desc": "Focado na perfeição física do corpo e na maestria com armas."
-        }
+        "Berserker":       { "name": "Caminho do Berserker",   "desc": "Combate frenético ao custo de exaustão pessoal." },
+        "Lore":            { "name": "Colégio do Saber",        "desc": "Bardos que coletam magias e segredos de longe e perto." },
+        "LifeDomain":      { "name": "Domínio da Vida",         "desc": "A vitalidade que sustenta todos os seres vivos." },
+        "CircleOfTheLand": { "name": "Círculo da Terra",        "desc": "Druidas que se reúnem em círculos sagrados para trocar conhecimento." },
+        "Champion":        { "name": "Campeão",                 "desc": "Focado na perfeição física do corpo e na maestria com armas." },
+        "OpenHand":        { "name": "Caminho da Mão Aberta",   "desc": "Monges que se especializam em combate desarmado." },
+        "Devotion":        { "name": "Juramento de Devoção",    "desc": "O compromisso do paladino com os mais altos ideais de justiça, virtude e ordem." },
+        "Hunter":          { "name": "Caçador",                 "desc": "Patrulheiros que perseguem ameaças monstruosas." },
+        "Thief":           { "name": "Ladrão",                  "desc": "Ladinos furtivos especializados em prestidigitação e arrombamento." },
+        "Draconic":        { "name": "Linhagem Dracônica",      "desc": "Feiticeiros cuja magia inata vem de ancestralidade dracônica." },
+        "Fiend":           { "name": "O Diabólico",             "desc": "Um bruxo que fez um pacto com um diabólico dos planos inferiores." },
+        "Evocation":       { "name": "Escola da Evocação",      "desc": "Magos que se especializam em magias que criam efeitos elementais poderosos." }
       },
       "Background": {
         "Acolyte":   { "name": "Acólito",       "desc": "Você passou a vida a serviço de um templo de um deus ou panteão específico." },

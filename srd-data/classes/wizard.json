@@ -1,0 +1,60 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "wizard",
+  "name": "Wizard",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Wizard",
+  "hitDie": 6,
+  "primaryAbility": ["int"],
+  "savingThrows": ["int", "wis"],
+  "armorProficiencies": [],
+  "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["arc", "his", "ins", "inv", "med", "rel"]
+  },
+  "subclassLevel": 2,
+  "subclasses": [
+    {
+      "key": "evocation",
+      "name": "School of Evocation",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Evocation",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "int",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Quarterstaff", "items": [{ "key": "quarterstaff", "qty": 1 }] },
+          { "label": "Dagger", "items": [{ "key": "dagger", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "focus",
+        "options": [
+          { "label": "Component pouch", "items": [{ "key": "component-pouch", "qty": 1 }] },
+          { "label": "Arcane focus", "items": [{ "key": "arcane-focus", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Scholar's pack", "items": [{ "key": "scholars-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "spellbook", "qty": 1 }
+    ]
+  },
+  "startingWealth": "4d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["spellcasting", "arcane-recovery"] }
+  ],
+  "source": "SRD-5.1"
+}

@@ -1,0 +1,61 @@
+{
+  "_schema": 1,
+  "_source": "SRD-5.1",
+  "key": "paladin",
+  "name": "Paladin",
+  "i18nKey": "CHARACTER_FORGE.SRD.Class.Paladin",
+  "hitDie": 10,
+  "primaryAbility": ["str", "cha"],
+  "savingThrows": ["wis", "cha"],
+  "armorProficiencies": ["light", "medium", "heavy", "shields"],
+  "weaponProficiencies": ["simple", "martial"],
+  "toolProficiencies": [],
+  "skillProficiencies": {
+    "choose": 2,
+    "from": ["ath", "ins", "itm", "med", "per", "rel"]
+  },
+  "subclassLevel": 3,
+  "subclasses": [
+    {
+      "key": "devotion",
+      "name": "Oath of Devotion",
+      "i18nKey": "CHARACTER_FORGE.SRD.Subclass.Devotion",
+      "source": "SRD-5.1"
+    }
+  ],
+  "spellcasting": "cha",
+  "startingEquipment": {
+    "choices": [
+      {
+        "id": "primary-weapon",
+        "options": [
+          { "label": "Martial weapon + shield", "items": [{ "key": "longsword", "qty": 1 }, { "key": "shield", "qty": 1 }] },
+          { "label": "Two martial weapons", "items": [{ "key": "longsword", "qty": 1 }, { "key": "shortsword", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "secondary",
+        "options": [
+          { "label": "Five javelins", "items": [{ "key": "javelin", "qty": 5 }] },
+          { "label": "Any simple melee weapon", "items": [{ "key": "handaxe", "qty": 1 }] }
+        ]
+      },
+      {
+        "id": "pack",
+        "options": [
+          { "label": "Priest's pack", "items": [{ "key": "priests-pack", "qty": 1 }] },
+          { "label": "Explorer's pack", "items": [{ "key": "explorers-pack", "qty": 1 }] }
+        ]
+      }
+    ],
+    "fixed": [
+      { "key": "chain-mail", "qty": 1 },
+      { "key": "holy-symbol", "qty": 1 }
+    ]
+  },
+  "startingWealth": "5d4*10",
+  "advancementTable": [
+    { "level": 1, "proficiencyBonus": 2, "features": ["divine-sense", "lay-on-hands"] }
+  ],
+  "source": "SRD-5.1"
+}
