@@ -9,6 +9,7 @@ import SrdLoader from "./data/SrdLoader.mjs";
 import CompendiumScanner from "./data/CompendiumScanner.mjs";
 import { attachLevelUpButton, openLevelUpWizard } from "./levelup/LevelUpButton.mjs";
 import WelcomeDialog from "./WelcomeDialog.mjs";
+import ActorBuilder from "./builders/ActorBuilder.mjs";
 
 // =============================================================================
 // Singletons
@@ -229,6 +230,58 @@ Hooks.once("ready", () => {
   mod.api = {
     openCreationWizard,
     openLevelUpWizard,
-    openWelcomeDialog: () => new WelcomeDialog().render(true)
+    openWelcomeDialog: () => new WelcomeDialog().render(true),
+
+    /**
+     * Console diagnostic: dump key fields of an actor so the user can
+     * tell at a glance whether class / race / background got embedded
+     * and whether HP got set.
+     *
+     *   game.modules.get("character-forge").api.diagnoseActor("lLVE...")
+     */
+    diagnoseActor(id) {
+      const actor = id?.documentName ? id : game.actors.get(id);
+      if (!actor) {
+        console.warn("Character Forge | Actor not found:", id);
+        return null;
+      }
+      const items = actor.items.contents.map(i => ({
+        type: i.type,
+        name: i.name,
+        id: i.id,
+        identifier: i.system?.identifier,
+        levels: i.system?.levels,
+        advancements: (i.system?.advancement || []).length
+      }));
+      const report = {
+        name: actor.name,
+        type: actor.type,
+        hp: foundry.utils.deepClone(actor.system?.attributes?.hp || {}),
+        abilities: Object.fromEntries(
+          Object.entries(actor.system?.abilities || {}).map(([k, v]) => [k, { value: v.value, mod: v.mod }])
+        ),
+        items
+      };
+      console.log(`Character Forge | Diagnose ${actor.name}:`, report);
+      return report;
+    },
+
+    /**
+     * Console repair: apply the same HP-fallback the ActorBuilder runs
+     * at forge time. Useful for actors created with v0.12.0 or earlier
+     * (or whenever the AdvancementManager was cancelled mid-flow).
+     *
+     *   await game.modules.get("character-forge").api.repairActor("lLVE...")
+     */
+    async repairActor(id) {
+      const actor = id?.documentName ? id : game.actors.get(id);
+      if (!actor) {
+        console.warn("Character Forge | Actor not found:", id);
+        return false;
+      }
+      const fixed = await ActorBuilder.applyHpFallback(actor);
+      console.log(`Character Forge | Repair ${actor.name}:`, fixed ? "HP set" : "no change needed");
+      return fixed;
+    }
   };
 });

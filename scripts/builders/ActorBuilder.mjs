@@ -265,7 +265,66 @@ const ActorBuilder = {
       }
     }
 
+    // Final safety net: if HP is still 0 (SRD-built class with no
+    // advancement chain, or a cancelled AdvancementManager), derive
+    // max HP from the class hit die + CON modifier.
+    await this.applyHpFallback(actor);
+
     return actor;
+  },
+
+  /**
+   * Repair a partially-built actor whose HP never got set. Idempotent
+   * and safe to call on any character — does nothing if HP is already
+   * positive. Exposed via the module API so users can fix existing
+   * broken actors from console: `game.modules.get("character-forge")
+   * .api.repairActor(actorId)`.
+   */
+  async applyHpFallback(actor) {
+    const hp = actor.system?.attributes?.hp;
+    if (!hp) {
+      warn(`Actor ${actor.id} has no system.attributes.hp; cannot repair`);
+      return false;
+    }
+    if (hp.max > 0) return false; // already set
+
+    const classItem = actor.items.find(i => i.type === "class");
+    if (!classItem) {
+      ui.notifications.warn(t("CHARACTER_FORGE.Notify.HpFallbackNoClass"));
+      warn(`Actor ${actor.id} has no class item — HP stays at 0`);
+      return false;
+    }
+
+    const advancement = classItem.system?.advancement || [];
+    const hasHpAdvancement = advancement.some(a => a.type === "HitPoints");
+
+    // Parse hit-die: dnd5e stores it as "d10", "d8", etc.
+    const hdStr = String(classItem.system?.hitDice || "d6");
+    const hitDie = parseInt(hdStr.replace(/^d/i, ""), 10) || 6;
+    const conMod = actor.system?.abilities?.con?.mod ?? 0;
+    const hpValue = Math.max(1, hitDie + conMod);
+
+    log(`HP fallback for ${actor.name} (${classItem.name}): ${hpValue} (d${hitDie} + ${conMod} CON, advancement: ${hasHpAdvancement ? "present-but-skipped" : "absent"})`);
+
+    await actor.update({
+      "system.attributes.hp.value": hpValue,
+      "system.attributes.hp.max": hpValue
+    });
+
+    if (hasHpAdvancement) {
+      // Compendium class has HitPoints advancement but it didn't run —
+      // user likely cancelled the manager. Warn so they know they can
+      // re-roll if they want.
+      ui.notifications.warn(t("CHARACTER_FORGE.Notify.HpFallbackAdvancement", {
+        name: classItem.name, hp: hpValue
+      }));
+    } else {
+      // SRD-built class — expected path. Quieter info toast.
+      ui.notifications.info(t("CHARACTER_FORGE.Notify.HpFallbackSrd", {
+        name: classItem.name, hp: hpValue
+      }));
+    }
+    return true;
   },
 
   /** Resolve the race the user selected into a Foundry Item document data. */
