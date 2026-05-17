@@ -12,6 +12,7 @@ import { MODULE_ID, MODULE_PATH, t, log } from "./utils.mjs";
 import StepIdentity from "./steps/StepIdentity.mjs";
 import StepRace from "./steps/StepRace.mjs";
 import StepClass from "./steps/StepClass.mjs";
+import StepBackground from "./steps/StepBackground.mjs";
 import StepAbilities from "./steps/StepAbilities.mjs";
 import ActorBuilder from "./builders/ActorBuilder.mjs";
 import CompendiumPackPicker from "./data/CompendiumPackPicker.mjs";
@@ -111,6 +112,7 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "select-race": CharacterForgeWizard._onSelectRace,
       "select-subrace": CharacterForgeWizard._onSelectSubrace,
       "select-class": CharacterForgeWizard._onSelectClass,
+      "select-background": CharacterForgeWizard._onSelectBackground,
       "select-ability-method": CharacterForgeWizard._onSelectAbilityMethod,
       "ability-inc": CharacterForgeWizard._onAbilityInc,
       "ability-dec": CharacterForgeWizard._onAbilityDec,
@@ -143,12 +145,13 @@ export default class CharacterForgeWizard extends ApplicationV2 {
   // ===========================================================================
 
   _registerSteps() {
-    // Additional steps will be pushed here as implemented: StepBackground,
-    // StepSkills, StepSpells, StepEquipment, StepReview.
+    // Additional steps will be pushed here as implemented: StepSkills,
+    // StepSpells, StepEquipment, StepReview.
     this._steps = [
       new StepIdentity(this),
       new StepRace(this),
       new StepClass(this),
+      new StepBackground(this),
       new StepAbilities(this)
     ];
   }
@@ -404,6 +407,17 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     this._data.classKey = key;
     // Reset subclass when parent changes — keeps state consistent.
     this._data.subclassKey = "";
+    this._saveDraft();
+    this.render();
+  }
+
+  // -------------------- Background step --------------------
+
+  static _onSelectBackground(event, target) {
+    const key = target.dataset.background;
+    if (!key) return;
+    this._captureCurrentStepData();
+    this._data.backgroundKey = key;
     this._saveDraft();
     this.render();
   }

@@ -42,6 +42,38 @@ function buildAbilitiesPayload(baseScores) {
   return out;
 }
 
+/** Build a minimal dnd5e background Item from a bundled-SRD entry. */
+function buildSrdBackgroundItem(bg) {
+  const parts = [];
+  if (bg.skillProficiencies?.length) {
+    parts.push(`<p><strong>Skill Proficiencies:</strong> ${bg.skillProficiencies.join(", ")}</p>`);
+  }
+  if (bg.toolProficiencies?.length) {
+    parts.push(`<p><strong>Tool Proficiencies:</strong> ${bg.toolProficiencies.join(", ")}</p>`);
+  }
+  if (bg.languages?.length) {
+    parts.push(`<p><strong>Languages:</strong> ${bg.languages.join(", ")}</p>`);
+  }
+  if (bg.startingGold) {
+    parts.push(`<p><strong>Starting Gold:</strong> ${bg.startingGold} gp</p>`);
+  }
+  if (bg.feature) {
+    parts.push(`<p><strong>Feature: ${bg.feature.name}.</strong> ${bg.feature.desc}</p>`);
+  }
+  parts.push(`<p><em>This background was built from Character Forge's bundled SRD data — proficiencies and tools need to be applied manually. For automatic application, use the dnd5e system's background compendium or import via Plutonium.</em></p>`);
+
+  return {
+    name: bg.name,
+    type: "background",
+    img: bg.img || "icons/svg/mystery-man.svg",
+    system: {
+      identifier: bg.key,
+      description: { value: parts.join("\n") },
+      source: { custom: "Character Forge — SRD bundled" }
+    }
+  };
+}
+
 /** Build a minimal dnd5e class Item at level 1 from a bundled-SRD entry. */
 function buildSrdClassItem(cls) {
   const parts = [];
@@ -114,9 +146,10 @@ const ActorBuilder = {
    * @returns {Promise<Actor>}
    */
   async build(data) {
-    const [raceItem, classItem] = await Promise.all([
+    const [raceItem, classItem, backgroundItem] = await Promise.all([
       this._resolveRaceItem(data),
-      this._resolveClassItem(data)
+      this._resolveClassItem(data),
+      this._resolveBackgroundItem(data)
     ]);
 
     const actorData = {
@@ -155,6 +188,14 @@ const ActorBuilder = {
         await actor.createEmbeddedDocuments("Item", [classItem]);
       } catch (err) {
         warn("Failed to embed class item:", err);
+      }
+    }
+    if (backgroundItem) {
+      log("Embedding background item:", backgroundItem.name);
+      try {
+        await actor.createEmbeddedDocuments("Item", [backgroundItem]);
+      } catch (err) {
+        warn("Failed to embed background item:", err);
       }
     }
 
@@ -233,6 +274,34 @@ const ActorBuilder = {
 
     // 2) Bundled SRD: synthesise a minimal level-1 class Item.
     return buildSrdClassItem(cls);
+  },
+
+  /** Resolve the background the user selected into a Foundry Item document data. */
+  async _resolveBackgroundItem(data) {
+    if (!data.backgroundKey) return null;
+    const bg = DataRegistry.getBackground(data.backgroundKey);
+    if (!bg) {
+      warn(`Background not found in registry: ${data.backgroundKey}`);
+      return null;
+    }
+
+    // 1) Compendium-sourced: clone original. dnd5e Advancement applies
+    //    skill / tool / feature grants from system.advancement[].
+    if (bg.uuid) {
+      try {
+        const doc = await fromUuid(bg.uuid);
+        if (doc) {
+          const obj = doc.toObject();
+          delete obj._id;
+          return obj;
+        }
+      } catch (err) {
+        warn(`Failed to load compendium background ${bg.uuid}:`, err);
+      }
+    }
+
+    // 2) Bundled SRD: synthesise a minimal Item with description-only.
+    return buildSrdBackgroundItem(bg);
   }
 };
 

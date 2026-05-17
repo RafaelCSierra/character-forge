@@ -1,0 +1,80 @@
+<section class="cf-step" data-step="background">
+  <h2>{{localize "CHARACTER_FORGE.Step.Background"}}</h2>
+  <p class="cf-step-description">{{localize "CHARACTER_FORGE.Background.Desc"}}</p>
+
+  <fieldset class="cf-fieldset">
+    <legend>{{localize "CHARACTER_FORGE.Background.Choose"}}</legend>
+    <div class="cf-background-grid">
+      {{#each backgrounds}}
+      <button type="button"
+              class="cf-background-card{{#if (eq ../backgroundKey this.key)}} selected{{/if}}{{#if this.isCompendium}} cf-background-card-compendium{{/if}}"
+              data-action="select-background"
+              data-background="{{this.key}}">
+        <div class="cf-background-card-header">
+          {{#if this.img}}<img class="cf-background-card-img" src="{{this.img}}" alt="">{{/if}}
+          <span class="cf-background-card-name">{{this.displayName}}</span>
+        </div>
+        {{#if this.showStats}}
+        {{#if this.skillsLabel}}
+        <div class="cf-background-card-skills">{{localize "CHARACTER_FORGE.Background.SkillsShort"}}: {{this.skillsLabel}}</div>
+        {{/if}}
+        {{#if this.featureName}}
+        <div class="cf-background-card-feature">{{this.featureName}}</div>
+        {{/if}}
+        {{/if}}
+        {{#if this.sourceLabel}}
+        <div class="cf-background-card-source" title="{{this.sourceLabel}}">{{this.sourceLabel}}</div>
+        {{/if}}
+      </button>
+      {{/each}}
+    </div>
+  </fieldset>
+
+  {{#if selectedBackground}}
+  <fieldset class="cf-fieldset cf-background-preview">
+    <legend>
+      {{selectedBackground.displayName}}
+      {{#if selectedBackground.sourceLabel}}<span class="cf-imported-badge">{{selectedBackground.sourceLabel}}</span>{{/if}}
+    </legend>
+
+    {{#unless selectedBackground.isCompendium}}
+      {{#if selectedBackground.skillsLabel}}
+      <p class="cf-background-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Background.Skills"}}:</strong> {{selectedBackground.skillsLabel}}
+      </p>
+      {{/if}}
+      {{#if selectedBackground.hasTools}}
+      <p class="cf-background-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Background.Tools"}}:</strong> {{selectedBackground.toolsLabel}}
+      </p>
+      {{/if}}
+      {{#if selectedBackground.hasLanguages}}
+      <p class="cf-background-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Background.Languages"}}:</strong> {{selectedBackground.languagesLabel}}
+      </p>
+      {{/if}}
+      {{#if selectedBackground.startingGold}}
+      <p class="cf-background-meta-line">
+        <strong>{{localize "CHARACTER_FORGE.Background.StartingGold"}}:</strong> {{selectedBackground.startingGold}} gp
+      </p>
+      {{/if}}
+      {{#if selectedBackground.feature}}
+      <div class="cf-trait">
+        <div class="cf-trait-name">{{selectedBackground.feature.name}}</div>
+        <div class="cf-trait-desc">{{selectedBackground.feature.desc}}</div>
+      </div>
+      {{/if}}
+      <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Background.SrdNote"}}</p>
+    {{else}}
+      {{#if selectedBackground.descriptionSnippet}}
+      <p class="cf-background-snippet">{{selectedBackground.descriptionSnippet}}</p>
+      {{else}}
+      <p class="cf-background-snippet cf-muted">{{localize "CHARACTER_FORGE.Background.CompendiumNoSnippet"}}</p>
+      {{/if}}
+      <p class="cf-help cf-muted">{{localize "CHARACTER_FORGE.Background.CompendiumNote"}}</p>
+    {{/unless}}
+  </fieldset>
+  {{else}}
+  <p class="cf-step-empty">{{localize "CHARACTER_FORGE.Background.SelectPrompt"}}</p>
+  {{/if}}
+</section>

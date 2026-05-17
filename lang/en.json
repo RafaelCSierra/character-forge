@@ -59,6 +59,19 @@
         "spell": "spells"
       }
     },
+    "Background": {
+      "Desc": "Pick your character's background. The background grants two skill proficiencies, often tool proficiencies or languages, a non-mechanical feature, and a small amount of starting gold and gear.",
+      "Choose": "Choose a background",
+      "SelectPrompt": "Select a background above to see its full details.",
+      "Skills": "Skill Proficiencies",
+      "SkillsShort": "Skills",
+      "Tools": "Tool Proficiencies",
+      "Languages": "Languages",
+      "StartingGold": "Starting Gold",
+      "SrdNote": "This background was built from Character Forge's bundled SRD data. For automatic skill / tool / feature grants, use the dnd5e system's background compendiums or import via Plutonium.",
+      "CompendiumNoSnippet": "No preview text available for this background. Selecting it will use the version stored in the compendium.",
+      "CompendiumNote": "This background comes from an installed compendium. Skill / tool / feature grants will be applied by D&D 5e's native advancement system when the character is forged."
+    },
     "Class": {
       "Desc": "Pick your character's class. The class determines your hit die, saving-throw proficiencies, primary ability, and the features you gain at each level. Subclass selection happens automatically when you reach the appropriate level.",
       "Choose": "Choose a class",
@@ -177,6 +190,7 @@
       "NoRace": "Please choose a race before continuing.",
       "NoSubrace": "This race has subraces — please pick one before continuing.",
       "NoClass": "Please choose a class before continuing.",
+      "NoBackground": "Please choose a background before continuing.",
       "AbilitiesOverBudget": "Point-buy total exceeds 27 points. Lower some scores before continuing.",
       "AbilitiesOutOfRange": "Each point-buy score must be between 8 and 15.",
       "AbilitiesUnassigned": "Assign a value to every ability before continuing.",
@@ -226,10 +240,12 @@
         }
       },
       "Background": {
-        "Soldier": {
-          "name": "Soldier",
-          "desc": "War has been your life for as long as you care to remember."
-        }
+        "Acolyte":   { "name": "Acolyte",     "desc": "You have spent your life in the service of a temple to a specific god or pantheon of gods." },
+        "Criminal":  { "name": "Criminal",    "desc": "You are an experienced criminal with a history of breaking the law." },
+        "FolkHero":  { "name": "Folk Hero",   "desc": "You come from a humble social rank, but you are destined for so much more." },
+        "Noble":     { "name": "Noble",       "desc": "You understand wealth, power, and privilege." },
+        "Sage":      { "name": "Sage",        "desc": "You spent years learning the lore of the multiverse." },
+        "Soldier":   { "name": "Soldier",     "desc": "War has been your life for as long as you care to remember." }
       }
     }
   }

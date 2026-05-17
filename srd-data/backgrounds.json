@@ -3,6 +3,105 @@
   "_source": "SRD-5.1",
   "backgrounds": [
     {
+      "key": "acolyte",
+      "name": "Acolyte",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.Acolyte",
+      "skillProficiencies": ["ins", "rel"],
+      "toolProficiencies": [],
+      "languages": ["any:2"],
+      "equipment": [
+        { "key": "holy-symbol", "qty": 1 },
+        { "key": "prayer-book", "qty": 1 },
+        { "key": "stick-of-incense", "qty": 5 },
+        { "key": "vestments", "qty": 1 },
+        { "key": "common-clothes", "qty": 1 }
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "Shelter of the Faithful",
+        "desc": "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells."
+      },
+      "source": "SRD-5.1"
+    },
+    {
+      "key": "criminal",
+      "name": "Criminal",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.Criminal",
+      "skillProficiencies": ["dec", "ste"],
+      "toolProficiencies": ["gaming-set:any", "thieves-tools"],
+      "languages": [],
+      "equipment": [
+        { "key": "crowbar", "qty": 1 },
+        { "key": "dark-common-clothes-with-hood", "qty": 1 }
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "Criminal Contact",
+        "desc": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
+      },
+      "source": "SRD-5.1"
+    },
+    {
+      "key": "folk-hero",
+      "name": "Folk Hero",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.FolkHero",
+      "skillProficiencies": ["ani", "sur"],
+      "toolProficiencies": ["artisans-tools:any", "vehicles-land"],
+      "languages": [],
+      "equipment": [
+        { "key": "artisans-tools", "qty": 1 },
+        { "key": "shovel", "qty": 1 },
+        { "key": "iron-pot", "qty": 1 },
+        { "key": "common-clothes", "qty": 1 }
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Rustic Hospitality",
+        "desc": "Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them."
+      },
+      "source": "SRD-5.1"
+    },
+    {
+      "key": "noble",
+      "name": "Noble",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.Noble",
+      "skillProficiencies": ["his", "per"],
+      "toolProficiencies": ["gaming-set:any"],
+      "languages": ["any:1"],
+      "equipment": [
+        { "key": "fine-clothes", "qty": 1 },
+        { "key": "signet-ring", "qty": 1 },
+        { "key": "scroll-of-pedigree", "qty": 1 }
+      ],
+      "startingGold": 25,
+      "feature": {
+        "name": "Position of Privilege",
+        "desc": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure."
+      },
+      "source": "SRD-5.1"
+    },
+    {
+      "key": "sage",
+      "name": "Sage",
+      "i18nKey": "CHARACTER_FORGE.SRD.Background.Sage",
+      "skillProficiencies": ["arc", "his"],
+      "toolProficiencies": [],
+      "languages": ["any:2"],
+      "equipment": [
+        { "key": "ink", "qty": 1 },
+        { "key": "ink-pen", "qty": 1 },
+        { "key": "small-knife", "qty": 1 },
+        { "key": "letter-from-colleague", "qty": 1 },
+        { "key": "common-clothes", "qty": 1 }
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Researcher",
+        "desc": "When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or sage. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found."
+      },
+      "source": "SRD-5.1"
+    },
+    {
       "key": "soldier",
       "name": "Soldier",
       "i18nKey": "CHARACTER_FORGE.SRD.Background.Soldier",

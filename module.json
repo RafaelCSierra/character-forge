@@ -2,7 +2,7 @@
   "id": "character-forge",
   "title": "Character Forge",
   "description": "Friendly wizard for creating and leveling up D&D 5e Player Characters. SRD 5.1/5.2 content included; supports manual JSON imports from 5e.tools. EN + PT-BR.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13"

@@ -112,6 +112,7 @@ Hooks.once("init", () => {
     `modules/${MODULE_PATH}/templates/step-identity.hbs`,
     `modules/${MODULE_PATH}/templates/step-race.hbs`,
     `modules/${MODULE_PATH}/templates/step-class.hbs`,
+    `modules/${MODULE_PATH}/templates/step-background.hbs`,
     `modules/${MODULE_PATH}/templates/step-abilities.hbs`
   ]);
 });

@@ -59,6 +59,19 @@
         "spell": "magias"
       }
     },
+    "Background": {
+      "Desc": "Escolha o antecedente do seu personagem. O antecedente concede duas proficiências em perícias, frequentemente proficiências em ferramentas ou idiomas, um recurso não-mecânico e uma pequena quantidade de ouro e equipamento iniciais.",
+      "Choose": "Escolha um antecedente",
+      "SelectPrompt": "Selecione um antecedente acima para ver os detalhes completos.",
+      "Skills": "Proficiências em Perícias",
+      "SkillsShort": "Perícias",
+      "Tools": "Proficiências em Ferramentas",
+      "Languages": "Idiomas",
+      "StartingGold": "Ouro Inicial",
+      "SrdNote": "Este antecedente foi montado a partir do SRD embarcado do Character Forge. Para concessão automática de perícias / ferramentas / recursos, use os compêndios de antecedente do sistema dnd5e ou importe via Plutonium.",
+      "CompendiumNoSnippet": "Sem texto de prévia para este antecedente. Ao selecioná-lo será usada a versão armazenada no compêndio.",
+      "CompendiumNote": "Este antecedente vem de um compêndio instalado. Perícias, ferramentas e recursos serão aplicados pelo sistema de progressão nativo do D&D 5e quando o personagem for forjado."
+    },
     "Class": {
       "Desc": "Escolha a classe do seu personagem. A classe determina seu dado de vida, proficiências em testes de resistência, atributo principal e os recursos que você ganha em cada nível. A escolha de subclasse acontece automaticamente quando você atingir o nível apropriado.",
       "Choose": "Escolha uma classe",
@@ -177,6 +190,7 @@
       "NoRace": "Por favor, escolha uma raça antes de continuar.",
       "NoSubrace": "Esta raça tem sub-raças — escolha uma antes de continuar.",
       "NoClass": "Por favor, escolha uma classe antes de continuar.",
+      "NoBackground": "Por favor, escolha um antecedente antes de continuar.",
       "AbilitiesOverBudget": "O total de pontos excede 27. Reduza alguns valores antes de continuar.",
       "AbilitiesOutOfRange": "Cada valor de compra por pontos deve ficar entre 8 e 15.",
       "AbilitiesUnassigned": "Atribua um valor a cada atributo antes de continuar.",
@@ -226,10 +240,12 @@
         }
       },
       "Background": {
-        "Soldier": {
-          "name": "Soldado",
-          "desc": "A guerra foi sua vida por todo o tempo que você consegue lembrar."
-        }
+        "Acolyte":   { "name": "Acólito",       "desc": "Você passou a vida a serviço de um templo de um deus ou panteão específico." },
+        "Criminal":  { "name": "Criminoso",     "desc": "Você é um criminoso experiente com um histórico de violar a lei." },
+        "FolkHero":  { "name": "Herói do Povo", "desc": "Você vem de uma origem humilde, mas está destinado a muito mais." },
+        "Noble":     { "name": "Nobre",         "desc": "Você entende de riqueza, poder e privilégio." },
+        "Sage":      { "name": "Sábio",         "desc": "Você passou anos aprendendo o saber do multiverso." },
+        "Soldier":   { "name": "Soldado",       "desc": "A guerra foi sua vida por todo o tempo que você consegue lembrar." }
       }
     }
   }
