@@ -1167,6 +1167,112 @@
   cursor: not-allowed;
 }
 
+/* =====================================================================
+   Welcome dialog (first-run, GM-only)
+   ===================================================================== */
+
+.cf-welcome .window-content {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.cf-welcome-body {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cf-welcome-hero {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+
+.cf-welcome-icon {
+  font-size: 2.2em;
+  color: var(--cf-accent);
+  margin-bottom: 6px;
+}
+
+.cf-welcome-hero h2 {
+  margin: 4px 0 2px 0;
+  font-size: 1.3em;
+}
+
+.cf-welcome-sub {
+  margin: 0;
+  opacity: 0.75;
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+.cf-welcome-section h3 {
+  margin: 0 0 6px 0;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.cf-welcome-section h3 i {
+  color: var(--cf-accent);
+  margin-right: 6px;
+}
+
+.cf-welcome-section ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.cf-welcome-section li {
+  margin: 4px 0;
+  line-height: 1.4;
+  font-size: 0.92em;
+}
+
+.cf-welcome-section p {
+  margin: 4px 0;
+  line-height: 1.45;
+  font-size: 0.92em;
+}
+
+.cf-welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.cf-welcome-actions button {
+  flex: 1 1 180px;
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cf-welcome-footer {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.cf-welcome-dismiss {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.65;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.cf-welcome-dismiss:hover {
+  opacity: 1;
+}
+
 /* --- Race preview panel --- */
 .cf-race-preview .cf-race-meta-line {
   margin: 2px 0;

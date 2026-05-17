@@ -98,7 +98,9 @@ export default class CharacterForgeWizard extends ApplicationV2 {
           action: "manage-packs",
           icon: "fas fa-folder-tree",
           label: "CHARACTER_FORGE.PackPicker.Open",
-          visible: () => true
+          // Only GMs see the pack picker — players shouldn't be turning
+          // content sources on/off behind the GM's back.
+          visible: () => game.user?.isGM ?? false
         }
       ]
     },
@@ -413,8 +415,13 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     if (!key) return;
     this._captureCurrentStepData();
     this._data.classKey = key;
-    // Reset subclass when parent changes — keeps state consistent.
+    // Reset subclass + equipment choices when parent class changes —
+    // equipmentChoices is keyed by choice-group IDs that are class-specific
+    // (Fighter has "armor", "primary-weapon", "ranged", "pack" — Wizard
+    // has "weapon", "focus", "pack", "spellbook"), so leaving stale keys
+    // would have us embed mismatched items at forge time.
     this._data.subclassKey = "";
+    this._data.equipmentChoices = {};
     this._saveDraft();
     this.render();
   }

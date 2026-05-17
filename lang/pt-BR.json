@@ -59,7 +59,24 @@
         "spell": "magias"
       }
     },
+    "Welcome": {
+      "Title": "Bem-vindo ao Character Forge",
+      "Heading": "Bem-vindo ao Character Forge",
+      "Sub": "Um jeito mais amigável de criar e subir de nível personagens de D&D 5e.",
+      "WhatTitle": "O que este módulo faz",
+      "WhatBullet1": "Guia os jogadores pela criação de um Personagem Jogador nível 1 com cards e explicações, sem arrastar items soltos.",
+      "WhatBullet2": "Envolve o Advancement Manager nativo do D&D 5e com um ponto de entrada amigável em toda ficha de personagem (o ícone ↑).",
+      "WhatBullet3": "Suporta multiclasse via um diálogo de subir-nível que mostra os pré-requisitos de atributo do PHB.",
+      "ContentTitle": "De onde vem o conteúdo",
+      "ContentSrd": "As 9 raças do SRD, 6 antecedentes do SRD e (no momento) uma classe SRD embarcada são conteúdo CC-BY-4.0 que vem dentro do módulo. Funcionam direto.",
+      "ContentBeyond": "Todo o resto — raças do Tasha, classes do Xanathar, talentos do Mordenkainen — vem dos compêndios que você tem instalados no Foundry. O jeito mais fácil de popular esses compêndios é o módulo Plutonium, que importa conteúdo do 5e.tools. Você só roda ele uma vez por mundo.",
+      "ActionWizard": "Forjar um personagem agora",
+      "ActionPacks": "Escolher fontes de conteúdo",
+      "ActionReadme": "Abrir guia de configuração do Plutonium",
+      "Dismiss": "Entendi — não mostrar de novo"
+    },
     "LevelUp": {
+      "NoAdvancement": "{name} foi montado a partir do SRD embarcado e não tem uma cadeia de advancement — o nível subiu, mas PV e recursos de classe não vão atualizar automaticamente. Considere usar uma classe vinda de compêndio para suporte completo de subir nível.",
       "Title": "Subir de Nível",
       "ButtonHint": "Subir de nível este personagem via Character Forge",
       "Help": "Escolha um caminho. Ou aumente o nível de uma classe que você já tem, ou pegue um nível 1 numa nova classe (multiclasse).",

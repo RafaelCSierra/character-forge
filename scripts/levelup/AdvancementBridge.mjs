@@ -18,7 +18,7 @@
  */
 
 import DataRegistry from "../data/DataRegistry.mjs";
-import { log, warn } from "../utils.mjs";
+import { log, warn, t } from "../utils.mjs";
 
 /** Build a minimal level-1 class Item from a bundled SRD entry — mirror
  *  of ActorBuilder.buildSrdClassItem but local to the bridge so we don't
@@ -62,12 +62,23 @@ const AdvancementBridge = {
 
     const cur = classItem.system?.levels || 1;
     const next = cur + 1;
-    log(`Level up: ${actor.name} / ${classItem.name} — L${cur} → L${next}`);
+    const hasAdvancement = (classItem.system?.advancement || []).length > 0;
+    log(`Level up: ${actor.name} / ${classItem.name} — L${cur} → L${next} (advancement: ${hasAdvancement ? "yes" : "no"})`);
 
     // dnd5e detects the change in its preUpdateItem hook and opens the
     // AdvancementManager for the new level's chain. We don't have to
     // call .render() ourselves.
     await classItem.update({ "system.levels": next });
+
+    // SRD-bundled class items have no system.advancement[], so dnd5e
+    // won't pop up the AdvancementManager — the level just ticks up
+    // silently. Warn the user so they know to adjust HP / features
+    // manually, or to recreate using a compendium-sourced class.
+    if (!hasAdvancement) {
+      ui.notifications.warn(t("CHARACTER_FORGE.LevelUp.NoAdvancement", {
+        name: classItem.name
+      }));
+    }
   },
 
   /**

@@ -8,6 +8,7 @@ import CharacterForgeWizard from "./CharacterForgeWizard.mjs";
 import SrdLoader from "./data/SrdLoader.mjs";
 import CompendiumScanner from "./data/CompendiumScanner.mjs";
 import { attachLevelUpButton, openLevelUpWizard } from "./levelup/LevelUpButton.mjs";
+import WelcomeDialog from "./WelcomeDialog.mjs";
 
 // =============================================================================
 // Singletons
@@ -165,6 +166,20 @@ Hooks.once("ready", async () => {
     }, 3000);
   }
 
+  // First-run welcome dialog — only for GMs, only when never shown.
+  // GMs in fresh worlds get a quick orientation about SRD vs compendium
+  // content; players never see it.
+  try {
+    const alreadyShown = game.settings.get(MODULE_ID, "welcomeShown");
+    if (!alreadyShown && game.user?.isGM) {
+      // Small delay so the welcome appears AFTER the SRD/compat
+      // notifications, not before them.
+      setTimeout(() => new WelcomeDialog().render(true), 1500);
+    }
+  } catch (err) {
+    console.error("Character Forge | Welcome check failed:", err);
+  }
+
   log("Module ready.");
 });
 
@@ -213,6 +228,7 @@ Hooks.once("ready", () => {
   if (!mod) return;
   mod.api = {
     openCreationWizard,
-    openLevelUpWizard
+    openLevelUpWizard,
+    openWelcomeDialog: () => new WelcomeDialog().render(true)
   };
 });

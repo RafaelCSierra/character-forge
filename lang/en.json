@@ -59,7 +59,24 @@
         "spell": "spells"
       }
     },
+    "Welcome": {
+      "Title": "Welcome to Character Forge",
+      "Heading": "Welcome to Character Forge",
+      "Sub": "A friendlier way to create and level up D&D 5e characters.",
+      "WhatTitle": "What this module does",
+      "WhatBullet1": "Guides players through creating a level-1 Player Character with cards and explanations, not raw item drag-and-drop.",
+      "WhatBullet2": "Wraps the D&D 5e native Advancement Manager with a friendly entry point on every character sheet (the ↑ icon).",
+      "WhatBullet3": "Supports multiclass via a level-up dialog that shows PHB ability prerequisites.",
+      "ContentTitle": "Where the content comes from",
+      "ContentSrd": "The 9 SRD races, 6 SRD backgrounds, and (currently) one bundled SRD class are CC-BY-4.0 content shipped inside this module. They work out of the box.",
+      "ContentBeyond": "Everything else — Tasha's races, Xanathar's classes, Mordenkainen's feats — comes from compendium packs you've installed in Foundry. The easiest way to populate those is the Plutonium module, which imports content from 5e.tools. You only run it once per world.",
+      "ActionWizard": "Forge a character now",
+      "ActionPacks": "Choose content sources",
+      "ActionReadme": "Open Plutonium setup guide",
+      "Dismiss": "Got it — don't show this again"
+    },
     "LevelUp": {
+      "NoAdvancement": "{name} was built from SRD-bundled data and has no advancement chain — the level was raised, but HP and class features won't update automatically. Consider using a compendium-sourced class for full level-up support.",
       "Title": "Level Up",
       "ButtonHint": "Level up this character via Character Forge",
       "Help": "Pick a path. Either raise the level of a class you already have, or take a level 1 dip into a new class (multiclass).",
