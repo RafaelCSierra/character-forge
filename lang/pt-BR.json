@@ -143,6 +143,9 @@
       "Weapons": "Proficiência em Armas",
       "SkillsChoice": "Escolhas de Perícia",
       "SkillsChoiceText": "Escolher {choose} da lista de perícias da classe (será feito no passo Perícias).",
+      "ChooseSubclass": "Escolher uma subclasse",
+      "SubclassRequiredHint": "Esta classe escolhe a subclasse no nível 1. Escolha agora para que a ficha não peça \"Add Subclass\" depois.",
+      "SubclassOptionalHint": "Você pode escolher a subclasse agora ou esperar — a maioria das classes a escolhe no nível 3 via subir-nível.",
       "SrdNote": "Esta classe foi montada a partir do SRD embarcado do Character Forge. Para concessão automática de recursos e o passo-a-passo do Advancement do dnd5e, use os compêndios de classe do sistema dnd5e ou importe via Plutonium.",
       "CompendiumNoSnippet": "Sem texto de prévia para esta classe. Ao selecioná-la será usada a versão armazenada no compêndio.",
       "CompendiumNote": "Esta classe vem de um compêndio instalado. Perícias, estilo de luta, pontos de vida e concessões de recursos serão aplicados pelo sistema de progressão nativo do D&D 5e quando o personagem for forjado."

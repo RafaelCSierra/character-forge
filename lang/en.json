@@ -143,6 +143,9 @@
       "Weapons": "Weapon Training",
       "SkillsChoice": "Skill Choices",
       "SkillsChoiceText": "Pick {choose} from the class skill list (handled in the Skills step).",
+      "ChooseSubclass": "Choose a subclass",
+      "SubclassRequiredHint": "This class chooses its subclass at level 1. Pick one now and the character sheet won't pop up the \"Add Subclass\" prompt later.",
+      "SubclassOptionalHint": "You can pick the subclass now or wait — most classes choose it at level 3 via the level-up flow.",
       "SrdNote": "This class was built from Character Forge's bundled SRD data. For automatic feature grants and the dnd5e Advancement walkthrough, use the dnd5e system's class compendiums or import via Plutonium.",
       "CompendiumNoSnippet": "No preview text available for this class. Selecting it will use the version stored in the compendium.",
       "CompendiumNote": "This class comes from an installed compendium. Skills, fighting style, hit points, and feature grants will be applied by D&D 5e's native advancement system when the character is forged."

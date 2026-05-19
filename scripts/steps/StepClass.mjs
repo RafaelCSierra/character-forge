@@ -21,6 +21,7 @@
 
 import { MODULE_PATH, t } from "../utils.mjs";
 import DataRegistry from "../data/DataRegistry.mjs";
+import CompendiumScanner from "../data/CompendiumScanner.mjs";
 
 const ABILITY_LABEL_KEYS = {
   str: "CHARACTER_FORGE.Ability.Str",
@@ -38,6 +39,43 @@ function localizedClassName(cls) {
     if (localized && localized !== key) return localized;
   }
   return cls.name;
+}
+
+function localizedSubclassName(sub) {
+  if (sub.i18nKey) {
+    const key = `${sub.i18nKey}.name`;
+    const localized = game.i18n.localize(key);
+    if (localized && localized !== key) return localized;
+  }
+  return sub.name;
+}
+
+/** Compute the list of subclass options to offer for a given selected
+ *  class. SRD-bundled classes ship a `subclasses[]` array directly;
+ *  compendium classes are matched via Foundry's `system.classIdentifier`
+ *  against subclass items found by CompendiumScanner. */
+function gatherSubclasses(cls, isCompendiumClass) {
+  if (!cls) return [];
+  if (isCompendiumClass) {
+    const ident = cls.identifier;
+    if (!ident) return [];
+    return CompendiumScanner.get("subclass")
+      .filter(s => s.classIdentifier === ident)
+      .map(s => ({
+        key: s.key,
+        displayName: s.name,
+        img: s.img || null,
+        sourceLabel: s._packLabel || "",
+        isCompendium: true
+      }));
+  }
+  return (cls.subclasses || []).map(s => ({
+    key: s.key,
+    displayName: localizedSubclassName(s),
+    img: null,
+    sourceLabel: "",
+    isCompendium: false
+  }));
 }
 
 function abilitySummary(keys) {
@@ -104,10 +142,22 @@ export default class StepClass {
       descriptionSnippet: selectedRaw.descriptionSnippet || ""
     } : null;
 
+    // Build the subclass options to offer for this class (if any).
+    // The picker is shown when the class has at least one matching
+    // subclass; for SRD Cleric / Sorcerer / Warlock we additionally
+    // flag it as "recommended at level 1" so the help text changes.
+    const subclasses = gatherSubclasses(selectedRaw, isCompendiumSelected);
+    const subclassRequiredAtL1 = !!(selectedRaw && !isCompendiumSelected
+      && selectedRaw.subclassLevel === 1);
+
     return {
       classes,
       classKey: data.classKey || "",
-      selectedClass
+      subclassKey: data.subclassKey || "",
+      selectedClass,
+      subclasses,
+      hasSubclasses: subclasses.length > 0,
+      subclassRequiredAtL1
     };
   }
 

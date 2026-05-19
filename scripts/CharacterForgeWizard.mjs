@@ -117,6 +117,7 @@ export default class CharacterForgeWizard extends ApplicationV2 {
       "select-race": CharacterForgeWizard._onSelectRace,
       "select-subrace": CharacterForgeWizard._onSelectSubrace,
       "select-class": CharacterForgeWizard._onSelectClass,
+      "pick-subclass": CharacterForgeWizard._onPickSubclass,
       "select-background": CharacterForgeWizard._onSelectBackground,
       "select-equipment-option": CharacterForgeWizard._onSelectEquipmentOption,
       "select-ability-method": CharacterForgeWizard._onSelectAbilityMethod,
@@ -422,6 +423,15 @@ export default class CharacterForgeWizard extends ApplicationV2 {
     // would have us embed mismatched items at forge time.
     this._data.subclassKey = "";
     this._data.equipmentChoices = {};
+    this._saveDraft();
+    this.render();
+  }
+
+  static _onPickSubclass(event, target) {
+    const key = target.dataset.subclass;
+    if (!key) return;
+    this._captureCurrentStepData();
+    this._data.subclassKey = key;
     this._saveDraft();
     this.render();
   }

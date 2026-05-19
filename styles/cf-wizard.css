@@ -426,6 +426,26 @@
   overflow-y: auto;
 }
 
+/* Subclass cascade block, sitting inside the class-preview fieldset. */
+.cf-subclass-block {
+  margin: 10px 0 6px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--cf-accent) 8%, transparent);
+  border-radius: 4px;
+}
+
+.cf-subclass-block-title {
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+  color: var(--cf-accent-light);
+}
+
+.cf-class-grid-sub {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 6px;
+}
+
 /* Background card pieces — mirror class card structure */
 .cf-wizard .cf-background-card-compendium {
   border-style: dashed;

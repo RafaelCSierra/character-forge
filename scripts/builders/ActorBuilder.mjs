@@ -17,6 +17,7 @@
  */
 
 import DataRegistry from "../data/DataRegistry.mjs";
+import CompendiumScanner from "../data/CompendiumScanner.mjs";
 import { t, log, warn } from "../utils.mjs";
 import { ABILITY_KEYS } from "./AbilityScoreCalculator.mjs";
 
@@ -122,6 +123,25 @@ function buildSrdBackgroundItem(bg) {
   };
 }
 
+/** Build a minimal dnd5e subclass Item from a bundled-SRD subclass entry.
+ *  Caller passes both the subclass record and the parent class record so
+ *  we can set system.classIdentifier (dnd5e's required link field). */
+function buildSrdSubclassItem(sub, parentCls) {
+  return {
+    name: sub.name,
+    type: "subclass",
+    img: sub.img || "icons/svg/mystery-man.svg",
+    system: {
+      identifier: sub.key,
+      classIdentifier: parentCls?.key || "",
+      description: {
+        value: `<p>SRD-bundled subclass for ${parentCls?.name || "this class"} (Character Forge minimal item — no advancement chain).</p>`
+      },
+      source: { custom: "Character Forge — SRD bundled" }
+    }
+  };
+}
+
 /** Build a minimal dnd5e class Item at level 1 from a bundled-SRD entry. */
 function buildSrdClassItem(cls) {
   const parts = [];
@@ -194,9 +214,10 @@ const ActorBuilder = {
    * @returns {Promise<Actor>}
    */
   async build(data) {
-    const [raceItem, classItem, backgroundItem] = await Promise.all([
+    const [raceItem, classItem, subclassItem, backgroundItem] = await Promise.all([
       this._resolveRaceItem(data),
       this._resolveClassItem(data),
+      this._resolveSubclassItem(data),
       this._resolveBackgroundItem(data)
     ]);
     const equipmentItems = this._resolveStartingEquipment(data);
@@ -237,6 +258,14 @@ const ActorBuilder = {
         await actor.createEmbeddedDocuments("Item", [classItem]);
       } catch (err) {
         warn("Failed to embed class item:", err);
+      }
+    }
+    if (subclassItem) {
+      log("Embedding subclass item:", subclassItem.name);
+      try {
+        await actor.createEmbeddedDocuments("Item", [subclassItem]);
+      } catch (err) {
+        warn("Failed to embed subclass item:", err);
       }
     }
     if (backgroundItem) {
@@ -399,6 +428,46 @@ const ActorBuilder = {
 
     // 2) Bundled SRD: synthesise a minimal level-1 class Item.
     return buildSrdClassItem(cls);
+  },
+
+  /** Resolve the subclass the user selected (if any) into a Foundry
+   *  Item document data. Returns null when no subclass picked. */
+  async _resolveSubclassItem(data) {
+    if (!data.subclassKey) return null;
+
+    // 1) Compendium-sourced subclass: keys look like "comp:<pack>:<id>"
+    //    and the scanner stored a uuid. Clone the original; dnd5e
+    //    resolves system.classIdentifier already baked into the doc.
+    if (String(data.subclassKey).startsWith("comp:")) {
+      const compSub = CompendiumScanner.get("subclass")
+        .find(s => s.key === data.subclassKey);
+      if (compSub?.uuid) {
+        try {
+          const doc = await fromUuid(compSub.uuid);
+          if (doc) {
+            const obj = doc.toObject();
+            delete obj._id;
+            return obj;
+          }
+        } catch (err) {
+          warn(`Failed to load compendium subclass ${compSub.uuid}:`, err);
+        }
+      }
+      warn(`Compendium subclass not resolvable: ${data.subclassKey}`);
+      return null;
+    }
+
+    // 2) SRD-bundled subclass: live inside the selected class's
+    //    `subclasses[]` array. Find the parent class first so we can
+    //    set system.classIdentifier correctly on the synthesised item.
+    const cls = DataRegistry.getClass(data.classKey);
+    if (!cls || cls.uuid) return null; // compendium class but SRD subclass key — mismatch
+    const sub = (cls.subclasses || []).find(s => s.key === data.subclassKey);
+    if (!sub) {
+      warn(`Subclass not found in class ${cls.key}: ${data.subclassKey}`);
+      return null;
+    }
+    return buildSrdSubclassItem(sub, cls);
   },
 
   /** Resolve the background the user selected into a Foundry Item document data. */

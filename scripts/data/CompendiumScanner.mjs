@@ -20,6 +20,10 @@ const INDEX_FIELDS = [
   "type",
   "img",
   "system.identifier",
+  // Subclass items reference their parent class via this field — we
+  // index it so StepClass can filter the global subclass list down to
+  // the ones that apply to the user's selected class.
+  "system.classIdentifier",
   "system.source",
   "system.description.value"
 ];
@@ -151,6 +155,9 @@ const CompendiumScanner = {
       img: entry.img,
       uuid: `Compendium.${packId}.Item.${entry._id}`,
       identifier,
+      // Only meaningful for subclass items — references their parent
+      // class's identifier. Subclass picker uses this to filter.
+      classIdentifier: entry.system?.classIdentifier || null,
       descriptionSnippet: descriptionSnippet(description),
       source: "compendium",
       _imported: true,

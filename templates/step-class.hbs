@@ -38,6 +38,35 @@
       {{#if selectedClass.sourceLabel}}<span class="cf-imported-badge">{{selectedClass.sourceLabel}}</span>{{/if}}
     </legend>
 
+    {{#if hasSubclasses}}
+    <div class="cf-subclass-block">
+      <div class="cf-subclass-block-title">
+        {{localize "CHARACTER_FORGE.Class.ChooseSubclass"}}
+      </div>
+      <p class="cf-help">
+        {{#if subclassRequiredAtL1}}
+          {{localize "CHARACTER_FORGE.Class.SubclassRequiredHint"}}
+        {{else}}
+          {{localize "CHARACTER_FORGE.Class.SubclassOptionalHint"}}
+        {{/if}}
+      </p>
+      <div class="cf-class-grid cf-class-grid-sub">
+        {{#each subclasses}}
+        <button type="button"
+                class="cf-class-card{{#if (eq ../subclassKey this.key)}} selected{{/if}}{{#if this.isCompendium}} cf-class-card-compendium{{/if}}"
+                data-action="pick-subclass"
+                data-subclass="{{this.key}}">
+          <div class="cf-class-card-header">
+            {{#if this.img}}<img class="cf-class-card-img" src="{{this.img}}" alt="">{{/if}}
+            <span class="cf-class-card-name">{{this.displayName}}</span>
+          </div>
+          {{#if this.sourceLabel}}<div class="cf-class-card-source" title="{{this.sourceLabel}}">{{this.sourceLabel}}</div>{{/if}}
+        </button>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
     {{#unless selectedClass.isCompendium}}
       {{#if selectedClass.hitDieLabel}}
       <p class="cf-class-meta-line">
